@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset
+            name="comment"
+            label="COM_TZ_GUESTBOOK_0"
+            description="COM_TZ_GUESTBOOK_DISCRIPTION_0">
+
+        <field
+                        name="shownow"
+                        type="radio"
+                        label="COM_TZ_GUESTBOOK_SHOW_GUESTBOOK"
+                        default="1"
+                        class="btn-group"
+                        description="COM_TZ_GUESTBOOK_DESCRIPTION_SHOW_GUESTBOOK">
+                    <option value="1">
+                        JSHOW
+                    </option>
+                    <option value="0">
+                        JHIDE
+                    </option>
+                </field>
+
+
+        <field
+                name="title"
+                type="radio"
+                label="COM_TZ_GUESTBOOK_SHOW_TITLE"
+                default="1"
+                class="btn-group"
+                description="COM_TZ_GUESTBOOK_DO_YOU_WANT_SHOW_TITLE">
+            <option value="1">
+                JSHOW
+            </option>
+            <option value="0">
+                JHIDE
+            </option>
+        </field>
+        <field
+                name="name"
+                type="radio"
+                label="COM_TZ_GUESTBOOK_SHOW_NAME"
+                class="btn-group"
+                default="1"
+                description="COM_TZ_GUESTBOOK_DO_YOU_WANT_SHOW_NAME">
+             <option value="1">
+                 JSHOW
+             </option>
+            <option value="0">
+                JHIDE
+            </option>
+        </field>
+        <field
+                name="date"
+                type="radio"
+                label="COM_TZ_GUESTBOOK_SHOW_DATE"
+                class="btn-group"
+                default="1"
+                description="COM_TZ_GUESTBOOK_DO_YOU_WANT_SHOW_DATE">
+           <option value="1">
+               JSHOW
+           </option>
+            <option value="0">
+                JHIDE
+            </option>
+
+        </field>
+        <field
+                                    name="congiajax"
+                                    type="list"
+                                    label="COM_TZ_GUESTBOOK_TYPE_LAYOUT"
+                                    default="0"
+                                    description="COM_TZ_GUESTBOOK_DESCRIPTION_TYPE_LAYOUT">
+
+                                <option value="1">
+                                    COM_TZ_GUESTBOOK_BUTTOM_AJAX
+                                </option>
+                                <option value="2">
+                                    COM_TZ_GUESTBOOK_AJAX_LINITE_SROLL
+                                </option>
+                                <option value="0">
+                                    COM_TZ_GUESTBOOK_DEFAULT
+                                </option>
+
+                            </field>
+        <field
+                                name="sapxeplubut"
+                                type="list"
+                                default="0"
+                                label="COM_TZ_GUESTBOOK_ARRANGEMENTS_GUESTBOOK"
+                                description="COM_TZ_GUESTBOOK_DISCRIPTION_ARRANGEMENTS_GUESTBOOK">
+                                <option value="1">
+                                    COM_TZ_GUESTBOOK_ASC
+                                </option>
+                                <option value="0">
+                                    COM_TZ_GUESTBOOK_DESC
+                                </option>
+                              </field>
+
+        <field
+        			name="captcha"
+        			type="plugins"
+        			folder="captcha"
+        			default=""
+        			label="COM_TZ_GUESTBOOK_CAPTCHA_LABEL"
+        			description="COM_TZ_GUESTBOOK_DESCRIPTION_CAPTCHA_LABEL"
+        			filter="cmd" >
+        			<option
+        				value="">JOPTION_USE_DEFAULT</option>
+        			<option
+        				value="0">JOPTION_DO_NOT_USE</option>
+        		</field>
+        <field
+                name="showcaptchat"
+                type="list"
+                default="0"
+                label="COM_TZ_GUESTBOOK_SHOW_CAPTCHA"
+                description="COM_TZ_GUESTBOOK_DESCRIPTION_SHOW_CAPTCHA">
+                <option value="1">
+                    JSHOW
+                </option>
+                <option value="0">
+                    JHIDE
+                </option>
+
+        </field>
+        <field
+            name="website"
+            type="list"
+            default="1"
+            label="COM_TZ_GUESTBOOK_SHOW_WEBSITE"
+            description="COM_TZ_GUESTBOOK_DISCRIPTION_SHOW_WEBSITE">
+            <option value="1">
+                JSHOW
+            </option>
+            <option value="0">
+                JHIDE
+            </option>
+        </field>
+        <field
+                                         name="rows_ts"
+                                         type="text"
+                                         label="COM_TZ_GUESTBOOK_ARTICLES_LIMIT"
+                                         default="5"
+                                         description="COM_TZ_GUESTBOOK_YOU_WANT_ARTICLES_HOW_MANY_LIMIT">
+                                 </field>
+                <field
+                        name="nnt_coludwidt"
+                        type="text"
+                        label="COM_TZ_GUESTBOOK_ARTICLE_WIDTH"
+                        default="260"
+                        description="COM_TZ_GUESTBOOK_DESCRIPTION_ARTICLE_WIDTH">
+
+                </field>
+        <field
+            name="texename"
+            type="text"
+            default="200"
+            label="COM_TZ_GUESTBOOK_TEXT_NAME"
+            description="COM_TZ_GUESTBOOK_DESCRIPTION_TEXT_NAME">
+     </field>
+        <field
+                name="texemail"
+                type="text"
+                default="200"
+                label="COM_TZ_GUESTBOOK_TEXT_EMAIL"
+                description="COM_TZ_GUESTBOOK_DESCRIPTION_TEXT_EMAIL">
+         </field>
+        <field
+                name="texwebsite"
+                type="text"
+                default="200"
+                label="COM_TZ_GUESTBOOK_TEXT_WEBSITE"
+                description="COM_TZ_GUESTBOOK_DESCRIPTION_TEXT_WEBSITE">
+      </field>
+        <field
+            name="textitle"
+            type="text"
+            default="500"
+            label="COM_TZ_GUESTBOOK_TEXT_TITLE"
+            description="COM_TZ_GUESTBOOK_DESCRIPTION_TEXT_TITLE">
+
+    </field>
+        <field
+                name="textcomment"
+                type="text"
+                default="2000"
+                label="COM_TZ_GUESTBOOK_TEXT_COMMENT"
+                description="COM_TZ_GUESTBOOK_DESCRIPTION_TEXT_COMMENT">
+        </field>
+        <field
+               name="timethongbao"
+               type="text"
+               default="2000"
+               label="COM_TZ_GUESTBOOK_TIME_NOTICE"
+               description="COM_TZ_GUESTBOOK_DESCRIPTION_TIME_NOTICE">
+
+          </field>
+
+    </fieldset>
+</config>

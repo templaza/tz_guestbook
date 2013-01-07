@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS `#__comment` (
+`id_cm` INT(20) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`name` VARCHAR(100) NOT NULL,
+`email` VARCHAR(100) NOT NULL,
+`title` TEXT NOT NULL,
+`content` TEXT NOT NULL,
+`public` TINYINT(2) NOT NULL,
+`date` DATETIME NOT NULL,
+`status` TINYINT(2) NOT NULL,
+`website` varchar (200),
+`id_us` INT(20) NOT NULL
+) ENGINE = InnoDB;
