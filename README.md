@@ -7,3 +7,14 @@ Documentation can be found on the wiki project page: http://wiki.templaza.com/TZ
 Demo: http://demo.tzportfolio.com/tz-guestbook
 
 Download version for Joomla 2.5: https://github.com/templaza/tz_guestbook2.5
+
+*** Changelog ***
+
+01/12/13 - 1.1.2
+	
+    [Bug] Not encode with HTML Special Char
+    [Bug] Remote upload quote
+	
+01/02/13 - 1.1.1
+	
+	First version!
