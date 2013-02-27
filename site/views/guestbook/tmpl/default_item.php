@@ -10,7 +10,7 @@
                  ?>
                     <li class="nnt-warl-comment-li-1">
                         <span>
-                            Author
+                             <?php echo JText::_('COM_TZ_GUESTBOOK_AUTHOR'); ?>
                         </span>
                         <span>
                               <?php     echo $rr->cname; ?>
@@ -22,7 +22,7 @@
                  ?>
                     <li class="nnt-warl-comment-li-2">
                          <span>
-                             Create Date
+                             <?php echo JText::_('COM_TZ_GUESTBOOK_CREATE_DATE'); ?>
                          </span>
                          <span>
                                   <?php    echo $rr->cdate;    ?>
@@ -34,7 +34,7 @@
                 ?>
                  <li class="nnt-warl-comment-li-3">
                      <span>
-                         Website
+                           <?php echo JText::_('COM_TZ_GUESTBOOK_WEBSITE_SITE'); ?>
                      </span>
 
                      <a  target="_blank" href="<?php echo $rr->cwebsite; ?>" rel="nofollow">
