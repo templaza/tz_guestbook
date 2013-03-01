@@ -11,6 +11,7 @@ Download version for Joomla 2.5: https://github.com/templaza/tz_guestbook2.5
 If you love TZ Guestbook, please help us review and vote for it on JED: http://extensions.joomla.org/extensions/contacts-and-feedback/guest-book/22962
 
 *** Changelog ***
+
 03/01/13 - 1.1.3
 
     Update language code
