@@ -15,6 +15,7 @@ If you love TZ Guestbook, please help us review and vote for it on JED: http://e
 03/01/13 - 1.1.3
 
     Update language code
+    Fixed error with UTF-8
 
 01/12/13 - 1.1.2
 	
