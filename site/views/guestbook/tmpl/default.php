@@ -236,7 +236,7 @@ jQuery(document).ready(function(){
                     var loiwebsite = jQuery('#warp-input4');
                     var p_website = document.getElementById("p_website");
 
-                     var str2 = /^([a-zA-Z0-9_\.])+\@([a-zA-Z0-9]{2,4})+\.([a-zA-Z]{2,4})([a-z-A-Z\.]{2,4})?$/;
+                     var str2 = /^([a-zA-Z0-9_\.])+\@([a-zA-Z0-9_\-])+\.([a-zA-Z]{2,4})([a-z-A-Z\.]{2,4})?$/;
                     var srt3 =/^http(s)?:\/\/(www\.)?([a-zA-Z0-9\_])+\.([a-zA-Z0-9\/]{1,5})+(\.[A-Za-z0-9\/]{1,4})?([a-zA-Z0-9\/\.&=_\+\#\-\?]*)?$/
 
 
