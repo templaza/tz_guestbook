@@ -9,4 +9,4 @@ CREATE TABLE IF NOT EXISTS `#__comment` (
 `status` TINYINT(2) NOT NULL,
 `website` varchar (200),
 `id_us` INT(20) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+)ENGINE=MyISAM  DEFAULT CHARSET=utf8;

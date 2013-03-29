@@ -21,44 +21,41 @@
     class Tz_guestbookViewGuestbook extends JViewLegacy{
         protected $form;
         function display($tpl=null){
-            $state  = $this -> get('State') -> get('params'); // buoc 1 khai bao 1 ham Sate buoc 2 lay ra thuoc tinh params trong ham
-
-            $titl = $state->get('title'); // lay ra gia tri title
-            $showcapcha = $state->get('showcaptchat');
-            $name = $state->get('name');
-            $date = $state->get('date');
-            $this->form		= $this->get('Form');
-            $nnt_width = $state->get('nnt_coludwidt');
-
-            $configajx = $state->get('congiajax');
-            $fweb = $state->get('website');
-            $hienthistatus = $state->get('shownow');
-            $count_name = $state->get('texename');
-            $count_email = $state->get('texemail');
-            $count_website = $state->get('texwebsite');
-            $count_title = $state->get('textitle');
-            $count_commnet=$state->get('textcomment');
-            $time_thongbao=$state->get('timethongbao');
+            $state          = $this -> get('State') -> get('params');
+            $titl           = $state->get('title');
+            $showcapcha     = $state->get('showcaptchat');
+            $name           = $state->get('name');
+            $date           = $state->get('date');
+            $this->form	    = $this->get('Form');
+            $nnt_width      = $state->get('nnt_coludwidt');
+            $configajx      = $state->get('congiajax');
+            $fweb           = $state->get('website');
+            $tz_status      = $state->get('shownow');
+            $count_name     = $state->get('texename');
+            $count_email    = $state->get('texemail');
+            $count_website  = $state->get('texwebsite');
+            $count_title    = $state->get('textitle');
+            $count_commnet  = $state->get('textcomment');
+            $time_notice    = $state->get('timethongbao');
             $gust_arrangements = $state->get('sapxeplubut');
-
-            $this->assign('arrganerme_gustbook',$gust_arrangements);
-            $this->assign('tim_thongbao',$time_thongbao);
-            $this->assign('count_name',$count_name);
-            $this->assign('count_email',$count_email);
-            $this->assign('count_web',$count_website);
-            $this->assign('count_tit',$count_title);
-            $this->assign('count_comm',$count_commnet);
-            $this->assign('hienthistatus',$hienthistatus);
-            $this->assign('fweb',$fweb);
-            $this->assign('capchat',$showcapcha);
-            $this->assign('conajx',$configajx);
-            $this->assign('nnt_width',$nnt_width);
-            $this->assign('dat',$date);
-            $this->assign('nam',$name);
-            $this->assign('tit',$titl);
-            $this->assign('hienthi',$this->get('List'));
-            $this->assign('auth',$this->get('Author2'));
-            $this -> assignRef('pagination',$this -> get('Pagination'));
+            $this -> assign('arrganerme_gustbook',$gust_arrangements);
+            $this -> assign('time_notice',$time_notice);
+            $this -> assign('count_name',$count_name);
+            $this -> assign('count_email',$count_email);
+            $this -> assign('count_web',$count_website);
+            $this -> assign('count_tit',$count_title);
+            $this -> assign('count_comm',$count_commnet);
+            $this -> assign('hstatus',$tz_status);
+            $this -> assign('fweb',$fweb);
+            $this -> assign('capchat',$showcapcha);
+            $this -> assign('conajx',$configajx);
+            $this -> assign('nnt_width',$nnt_width);
+            $this -> assign('dat',$date);
+            $this -> assign('nam',$name);
+            $this -> assign('tit',$titl);
+            $this -> assign('display',$this->get('List'));
+            $this -> assign('auth',$this->get('Author2'));
+            $this -> assign('pagination',$this -> get('Pagination'));
             parent::display($tpl);
         }
     }

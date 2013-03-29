@@ -13,7 +13,7 @@
 
             $query  = 'SELECT params FROM #__extensions'
                       .' WHERE `type`="component" AND `name`="'.strtolower($manifest -> name).'"';
-            $db     = &JFactory::getDbo();
+            $db     = JFactory::getDbo();
             $db -> setQuery($query);
             $db -> query();
 
