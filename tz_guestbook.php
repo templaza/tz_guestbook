@@ -31,15 +31,15 @@ defined('_JEXEC') or die;
 
         }
         else{
-            echo"khong ton tia duong dan";
+            echo"not exist path";
         }
 
-        $controllerClass='Tz_guestbookController'.ucfirst($controllerName); // Ucfirst la ham doi ky tu dau tien thanh chu hoa
+        $controllerClass='Tz_guestbookController'.ucfirst($controllerName);
         if(class_exists($controllerClass))
                 $controller=new $controllerClass;
             else
-                echo "khong ton tai class";
+                echo "not exist class";
 
-        $controller->execute(JRequest::getVar('task')); // chay task
-        $controller->redirect(); // chen file controler vao
+        $controller->execute(JRequest::getVar('task'));
+        $controller->redirect();
 ?>

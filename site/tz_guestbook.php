@@ -17,30 +17,23 @@
 
 -------------------------------------------------------------------------*/
 defined('_JEXEC') or die;
-        $option = JRequest::getCmd('option');
-        $view =JRequest::getCmd('view','guestbook');
-        $controllerName = $view;
-        $task = JRequest::getVar('send');
-        $controlletPath=JPATH_COMPONENT.DIRECTORY_SEPARATOR.'controllers'.DIRECTORY_SEPARATOR.$controllerName.'.php';
 
-
-
-
-        if(file_exists($controlletPath)){
-            require_once($controlletPath);
-        }
-        else{
-            echo JError::raiseError(500,'Invailid controller');;
-        }
-
-        $controllerClass='Tz_guestbookController'.ucfirst($controllerName);
-
-
-        if(class_exists($controllerClass))
-                $controller=new $controllerClass;
-            else
-                echo JError::raiseError(500,'Invailid Class controller!');
-
-        $controller->execute(JRequest::getCmd('send')); // chay task
-        $controller->redirect(); // chen file controler vao
+    $option         = JRequest::getCmd('option');
+    $view           = JRequest::getCmd('view','guestbook');
+    $controllerName = $view;
+    $task           = JRequest::getVar('send');
+    $controlletPath = JPATH_COMPONENT.DIRECTORY_SEPARATOR.'controllers'.DIRECTORY_SEPARATOR.$controllerName.'.php';
+    if(file_exists($controlletPath)){
+        require_once($controlletPath);
+    }
+    else{
+        echo JError::raiseError(500,'Invailid controller');;
+    }
+    $controllerClass='Tz_guestbookController'.ucfirst($controllerName);
+    if(class_exists($controllerClass))
+        $controller=new $controllerClass;
+    else
+        echo JError::raiseError(500,'Invailid Class controller!');
+    $controller->execute(JRequest::getCmd('send'));
+    $controller->redirect();
 ?>
