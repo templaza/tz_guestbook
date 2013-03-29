@@ -20,41 +20,40 @@ defined('_JEXEC') or die;
     jimport('joomla.application.component.controller');
 
     class Tz_guestbookControllerGuestbook extends JControllerAdmin {
-        function display(){
-            $task = JRequest::getVar('task');
-            $doc = &JFactory::getDocument();
-            $type = $doc->getType();
 
-            $view= &$this -> getView('guestbook',$type);
+            function display($cachable=false,$urlparams=array()){
+                $task   = JRequest::getVar('task');
+                $doc    = JFactory::getDocument();
+                $type   = $doc->getType();
+                $view   = $this -> getView('guestbook',$type);
+                $model  = $this->getModel('guestbook');
+                $view   -> setModel($model,true);
+                switch($task){
+                    case'tz.edit':
+                    case'g.edit':
+                    case'guestbook.edit':
+                        $view->setLayout('edit');
+                        break;
 
-            $model=&$this->getModel('guestbook');
-            $view-> setModel($model,true);
+                    case'tz.unpublish':
+                    case'guestbook.unpublish':
+                        $model-> unpulich();
+                        break;
 
-            switch($task){
-                case'tz.edit':
-                case'chitiet':
-                case'guestbook.edit':
-                    $view->setLayout('edit');
-                      break;
-                case'tz.unpublish':
-                case'guestbook.unpublish':
+                    case'tz.publish':
+                    case'guestbook.publish':
+                        $model-> publish();
+                        break;
 
-                    $model-> unpulich();
-                    break;
+                    case'remove':
+                        $model->delete();
+                        break;
 
-                case'tz.publish':
-                case'guestbook.publish':
-                     $model-> publish();
-                      break;
-                case'remove':
-                    $model->delete();
-                    break;
-                default:
-                    $view->setLayout('default');
-                    break;
+                    default:
+                        $view->setLayout('default');
+                        break;
+                }
+                $view->display();
             }
-
-            $view->display();
-        }
     }
 ?>

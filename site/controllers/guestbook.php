@@ -17,58 +17,37 @@
 
 -------------------------------------------------------------------------*/
 defined('_JEXEC') or die;
-        jimport('joomla.application.component.controller');
-    class  Tz_guestbookControllerGuestbook extends JControllerAdmin{
-        function  display(){
+jimport('joomla.application.component.controller');
 
-            $doc = &JFactory::getDocument();
-                        $type = $doc->getType();
-                        $view= &$this -> getView('guestbook',$type);
-                        $model=&$this->getModel('guestbook');
+class  Tz_guestbookControllerGuestbook extends JControllerAdmin{
 
-                        $view-> setModel($model,true);
-            $task = JRequest::getVar('task');
+    function  display($cachable=false,$urlparams=array()){
+        $doc    = JFactory::getDocument();
+        $type   = $doc->getType();
+        $view   = $this -> getView('guestbook',$type);
+        $model  = $this->getModel('guestbook');
+        $view   -> setModel($model,true);
+        $task   = JRequest::getVar('task');
 
-            if($task=='add'){
-                $ennr = $model->getCaptcha();
-
-                if($ennr ==1){
-
-                        echo $model -> ajax();
-                        die();
-                }else if($ennr ==0){
-                    echo 1;
-                        die();
-                } else if($ennr ==2){
-                    echo $model -> ajax();
-                    die();
-                }
-
-            }else if ($task=='add.ajax'){
-                echo $model->loadajax();
-                 die();
-            }else{
-                $view->setLayout('default');
+        if($task=='add'){ // task = add
+            $check = $model->getCaptcha(); // call getCaptcha
+            if($check ==1){
+                echo $model -> ajax();
+                die();
+            }else if($check ==0){
+                echo 1;
+                die();
+            }else if($check ==2){
+                echo $model -> ajax();
+                die();
             }
-
-//            switch($task){
-//
-//                case'add':
-//                echo $model -> ajax();
-//                die();
-//                    break;
-//                case'add.ajax':
-//                 echo $model->loadajax();
-//                 die();
-//                    break;
-//                default:
-//                    $view->setLayout('default');
-//                    break;
-//            }
-
-
-                 $view->display();
-
+        }else if ($task=='add.ajax'){
+            echo $model->loadajax();
+            die();
+        }else{
+            $view->setLayout('default');
         }
+        $view->display();
     }
+}
 ?>
