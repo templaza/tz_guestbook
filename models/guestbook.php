@@ -17,7 +17,7 @@
     
     -------------------------------------------------------------------------*/
     defined("_JEXEC") or die;
-    jimport('joomla.application.component.model');
+    jimport('joomla.application.component.modellist');
     jimport('joomla.html.pagination'); 
 
     class Tz_guestbookModelGuestbook extends JModelList{
@@ -158,6 +158,7 @@
                         FROM #__users AS u INNER JOIN #__comment AS c ON c.id_us  = u.id group by u.id";
             $db     -> setQuery($sql);
             $row    = $db->loadObjectList();
+
             return $row;
         }
 

@@ -22,11 +22,18 @@ defined('_JEXEC') or die;
     {
     	public static function addSubmenu($vName)
     	{
-    		JHtmlSidebar::addEntry(
-    			JText::_('guestbook'),
-    			'index.php?option=com_tz_guestbook&view=guestbook',
-    			$vName == 'guestbook'
-    		);
+            $class  = 'JHtmlSidebar';
+            if(!version_compare(JVERSION,'3.0','ge')){
+                $class  = 'JSubMenuHelper';
+            }
+//    		JHtmlSidebar::addEntry(
+//    			JText::_('guestbook'),
+//    			'index.php?option=com_tz_guestbook&view=guestbook',
+//    			$vName == 'guestbook'
+//    		);
+            call_user_func_array($class.'::addEntry',array(JText::_('COM_TZ_GUESTBOOK_SUBMENU_GUEST_BOOK'),
+                			'index.php?option=com_tz_guestbook&view=guestbook',
+                			$vName == 'guestbook') );
 
     	}
     }
