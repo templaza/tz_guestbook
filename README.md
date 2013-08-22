@@ -13,6 +13,7 @@ If you love TZ Guestbook, please help us review and vote for it on JED: http://e
 *** Changelog ***
 
 08/22/2013 - 3.0.0
+
     Switch with joomla 2.5 (support for joomla 2.5 and joomla 3.x).
     Add module mod_tz_guest_book in this component.
 
