@@ -26,8 +26,6 @@ defined("_JEXEC") or die;
     $listDirn = $this->state2;
     $listOrder = $this->state1;
     $sortFields = $this->getSortFields();
-
-
 ?>
 <script type="text/javascript">
     Joomla.orderTable = function() {
@@ -44,20 +42,26 @@ defined("_JEXEC") or die;
 </script>
 
 <form action="index.php?option=com_tz_guestbook&view=guestbook" method="post"  name="adminForm" id="adminForm">
-    <div id="j-sidebar-container" class="span2">
-        <?php echo $this->sidebar; ?>
-    </div>
-    <div id="j-main-container" class="span10">
-        <div id="j-main-container">
+    <?php if(!empty($this -> sidebar) AND COM_TZ_GUESTBOOK_JVERSION_COMPARE):?>
+        <div id="j-sidebar-container" class="span2">
+            <?php echo $this -> sidebar; ?>
+        </div>
+        <div id="j-main-container" class="span10">
+        <?php else:?>
+            <div id="j-main-container">
+        <?php endif;?>
+
             <div id="filter-bar" class="btn-toolbar">
                 <div class="filter-search btn-group pull-left">
-                    <label for="filter_search" class="element-invisible"><?php echo JText::_('COM_CONTENT_FILTER_SEARCH_DESC');?></label>
+                    <label for="filter_search" class="element-invisible"><?php echo JText::_('COM_TZ_GUESTBOOK_FILTER_SEARCH_DESC');?></label>
                     <input type="text" name="filter_search" placeholder="<?php echo JText::_('COM_TZ_GUESTBOOK_SEARCH_TITLE_OR_ID'); ?>" id="filter_search" value="<?php echo $this->tz_search; ?>" title="<?php echo JText::_('COM_CONTENT_FILTER_SEARCH_TITLE_VALUE'); ?>" />
                 </div>
                 <div class="btn-group pull-left hidden-phone">
-                    <button class="btn tip hasTooltip" type="submit" title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
-                    <button class="btn tip hasTooltip" type="button" onclick="document.id('filter_search').value='';this.form.submit();" title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"><i class="icon-remove"></i></button>
+                    <button class="btn hasTooltip" type="submit" title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
+                    <button class="btn hasTooltip" type="button" onclick="document.id('filter_search').value='';this.form.submit();" title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"><i class="icon-remove"></i></button>
                 </div>
+
+                <?php if(COM_TZ_GUESTBOOK_JVERSION_COMPARE): //If the joomla's version is 3.0 ?>
                 <div class="btn-group pull-right hidden-phone">
                     <label for="limit" class="element-invisible"><?php echo JText::_('JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC');?></label>
                     <?php echo $this->pagination->getLimitBox(); ?>
@@ -77,6 +81,13 @@ defined("_JEXEC") or die;
                         <?php echo JHtml::_('select.options', $sortFields, 'value', 'text', $listOrder);?>
                     </select>
                 </div>
+                <?php endif;?>
+                <?php // If the joomla's version is more than or equal to 3.0 ?>
+                <?php if(!COM_TZ_GUESTBOOK_JVERSION_COMPARE):?>
+                <div class="filter-select pull-right">
+                    <?php echo $this->sidebar; ?>
+                </div>
+                <?php endif;?>
 
             </div>
             <div class="clearfix"> </div>
@@ -124,7 +135,8 @@ defined("_JEXEC") or die;
                                 </div>
                                 <div class="pull-left">
                                     <?php
-                                        JHtml::_('dropdown.edit', $num->cid, 'guestbook.');
+                                        JHtml::_('dropdown.addCustomItem',JText::_('COM_TZ_GUESTBOOK_VIEW'),
+                                            'index.php?option=com_tz_guestbook&task=guestbook.edit&id='.$num->cid);
                                         JHtml::_('dropdown.divider');
                                         if ($num->cstatus) :
                                             JHtml::_('dropdown.unpublish', 'cb' . $i, 'guestbook.');
@@ -140,7 +152,7 @@ defined("_JEXEC") or die;
                                     if(isset($num->uname) && !empty($num->uname)){
                                         echo $num->uname;
                                     }else{
-                                        echo JText::_("COM_TZ_GUESTBOOK_GLOBAL_USER_AUTHOR_");
+                                        echo JText::_("COM_TZ_GUESTBOOK_GUEST");
                                     }
                                 ?>
                             </td>

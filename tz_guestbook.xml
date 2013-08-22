@@ -7,7 +7,7 @@
     	<license>GNU/GPL v2 or later http://www.gnu.org/licenses/gpl-2.0.html</license>
     	<authorEmail>nguyenngoctu.vnn@gmail.com</authorEmail>
     	<authorUrl>www.templaza.com</authorUrl>
-    	<version>1.1.3</version>
+    	<version>3.0.0</version>
     	<description>Tz Guestbook help you write guestbook</description>
         <scriptfile>script.php</scriptfile>
              <install>
@@ -35,19 +35,23 @@
     	</languages>
     	<administration>
             <languages>
-                		<language tag="en-GB">language/en-GB/en-GB.com_tz_guestbook.ini</language>
-                        <language tag="en-GB">language/en-GB/en-GB.com_tz_guestbook.sys.ini</language>
+                <language tag="en-GB">language/en-GB/en-GB.com_tz_guestbook.ini</language>
+                <language tag="en-GB">language/en-GB/en-GB.com_tz_guestbook.sys.ini</language>
              </languages>
     		<files>
+                <folder>controllers</folder>
+                <folder>css</folder>
+                <folder>helpers</folder>
+                <folder>install</folder>
+                <folder>js</folder>
+                <folder>jui</folder>
+                <folder>libraries</folder>
+                <folder>models</folder>
+                <folder>views</folder>
+
                 <filename>config.xml</filename>
     			<filename>index.html</filename>
     			<filename>tz_guestbook.php</filename>
-    			<folder>views</folder>
-    			<folder>models</folder>
-                <folder>install</folder>
-                <folder>helpers</folder>
-                <folder>css</folder>
-    			<folder>controllers</folder>
     		</files>
             <menu>tz_guestbook</menu>
             <submenu>
@@ -75,4 +79,8 @@
                 <field name="sapxeplubut" default="0"/>
             </fields>
     </config>
+
+    <modules>
+        <module module="mod_tz_guestbook" client="site" />
+    </modules>
 </extension>

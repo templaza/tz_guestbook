@@ -1,0 +1,11 @@
+.tz-guestbook .quote{
+    color: #8C8C8C;
+    font-size: 14px;
+    font-style: italic;
+}
+.tz-guestbook .author{
+    color: #8C8C8C;
+}
+.tz-guestbook li{
+    padding-bottom: 10px;
+}
