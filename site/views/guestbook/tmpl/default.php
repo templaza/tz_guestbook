@@ -20,6 +20,7 @@
 defined("_JEXEC") or die;
 $document   =   JFactory::getDocument();
 $document   ->  addStyleSheet('components/com_tz_guestbook/css/baiviet2.css');
+$document   ->  addScript('components/com_tz_guestbook/js/jquery-1.8.2.min.js');
 $document   ->  addCustomTag('<script type="text/javascript" src="components/com_tz_guestbook/js/jquery.masonry.min.js"></script>');
 $document   ->  addCustomTag('<script type="text/javascript" src="components/com_tz_guestbook/js/jquery.infinitescroll.min.js"></script>');
 

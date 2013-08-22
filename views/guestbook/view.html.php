@@ -22,6 +22,8 @@ require_once(JPATH_COMPONENT. DIRECTORY_SEPARATOR.'helpers'. DIRECTORY_SEPARATOR
 
 class Tz_guestbookViewGuestbook extends JViewLegacy{
 
+    protected $sidebar  = null;
+
     function display($tpl = null){
         $state      = $this -> get('State');
         $status     = $state->get('sata');
@@ -29,6 +31,13 @@ class Tz_guestbookViewGuestbook extends JViewLegacy{
         $listOrder  = $state->get('lab1');
         $listDirn   = $state->get('lab2');
         $search     = $state->get('search');
+
+        $author         = $this -> get('Author');
+        $guest          = new stdClass();
+        $guest -> value =  0;
+        $guest -> text  = JText::_('COM_TZ_GUESTBOOK_GUEST');
+        array_push($author,$guest);
+
         $this ->assign('tz_search',$search);
         $this ->assign('detail',$this->get('Detail'));
         $this ->assign('state1',$listOrder);
@@ -36,7 +45,7 @@ class Tz_guestbookViewGuestbook extends JViewLegacy{
         $this ->assign('author',$aut);
         $this ->assign('star',$status);
         $this ->assign('Hienthi',$this->get('List'));
-        $this ->assign('authors',$this->get('Author'));
+        $this ->assign('authors',$author);
         $this -> assign('pagination',$this -> get('Pagination'));
         $task = JRequest::getVar('task');
         Tz_guestbookHelper::addSubmenu('guestbook');
@@ -58,7 +67,7 @@ class Tz_guestbookViewGuestbook extends JViewLegacy{
 
     function addTookBar(){
         JToolbarHelper::title(JText::_('COM_TZ_GUESTBOOK_2'),'article.png');
-        JToolbarHelper::editList("tz.edit");
+        JToolbarHelper::editList("tz.edit",JText::_('COM_TZ_GUESTBOOK_VIEW'));
         JToolbarHelper::publishList("tz.publish");
         JToolbarHelper::unpublishList("tz.unpublish");
         JToolBarHelper::preferences('com_tz_guestbook');
@@ -67,7 +76,7 @@ class Tz_guestbookViewGuestbook extends JViewLegacy{
         JHtmlSidebar::addFilter(
             JText::_('JOPTION_SELECT_PUBLISHED'),
             'filter_published',
-            JHtml::_('select.options', $this->publicc(), 'value', 'text',  $this -> get('State')->get('sata'), true)
+            JHtml::_('select.options', $this->publicc(), 'value', 'text',  $this -> get('State')->get('sata'))
         );
 
         JHtmlSidebar::addFilter(
@@ -100,8 +109,8 @@ class Tz_guestbookViewGuestbook extends JViewLegacy{
 
     function publicc(){
         return array(
-        '1' => JText::_('Public'),
-        '0' => JText::_('unpublish'),
+        '1' => JText::_('JPUBLISHED'),
+        '0' => JText::_('JUNPUBLISHED'),
         );
     }
 }

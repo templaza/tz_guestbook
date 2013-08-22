@@ -40,6 +40,10 @@ defined('_JEXEC') or die;
             else
                 echo "not exist class";
 
+
+        include_once dirname(__FILE__) . '/libraries/core/defines.php';
+        include_once dirname(__FILE__) . '/libraries/core/tzguestbook.php';
+
         $controller->execute(JRequest::getVar('task'));
         $controller->redirect();
 ?>

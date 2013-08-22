@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.0" client="site" method="upgrade">
+    <name>mod_tz_guestbook</name>
+    <author>DuongTVTemplaza</author>
+    <cretionDate>August 09th 2013</cretionDate>
+    <copyright>Copyright (C) 2012 TemPlaza. All rights reserved.</copyright>
+    <license>GNU/GPL v2 or later http://www.gnu.org/licenses/gpl-2.0.html</license>
+    <authorEmail>support@templaza.com</authorEmail>
+    <authorUrl>www.templaza.com/</authorUrl>
+    <version>3.0.0</version>
+    <description>MOD_TZ_GUESTBOOK_DESCRIPTION</description>
+    <files>
+        <filename module="mod_tz_guestbook">mod_tz_guestbook.php</filename>
+        <filename>helper.php</filename>
+        <filename>index.html</filename>
+        <folder>admin</folder>
+        <folder>css</folder>
+        <folder>tmpl</folder>
+    </files>
+    <languages folder="languages">
+        <language tag="en-GB">en-GB/en-GB.mod_tz_guestbook.ini</language>
+        <language tag="en-GB">en-GB/en-GB.mod_tz_guestbook.sys.ini</language>
+    </languages>
+    <config>
+        <fields name="params">
+            <fieldset name="basic" addfieldpath="/modules/mod_tz_guestbook/admin/formfields">
+                <field name="count" type="text" default="5"
+                        label="MOD_TZ_GUESTBOOK_GUESTBOOK_LIMIT_LABEL"/>
+                <field name="order" type="list"
+                       default="rid"
+                       label="MOD_TZ_GUESTBOOK_ORDER_LABEL"
+                        description="MOD_TZ_GUESTBOOK_ORDER_DESC">
+                    <option value="rid">JGLOBAL_MOST_RECENT_FIRST</option>
+                    <option value="id">JGLOBAL_OLDEST_FIRST</option>
+                    <option value="alpha">JGLOBAL_TITLE_ALPHABETICAL</option>
+                    <option value="ralpha">JGLOBAL_TITLE_REVERSE_ALPHABETICAL</option>
+                    <option value="s_alpha">MOD_TZ_GUESTBOOK_SAYING_ALPHABETICAL</option>
+                    <option value="s_ralpha">MOD_TZ_GUESTBOOK_SAYING_REVERSE_ALPHABETICAL</option>
+                </field>
+                <field name="author" type="tzauthor"
+                       multiple="true" class="btn-group"
+                       label="MOD_TZ_GUESTBOOK_AUTHOR_LABEL"
+                        description="MOD_TZ_GUESTBOOK_AUTHOR_DESC">
+                    <option value="">MOD_TZ_GUESTBOOK_ALL_AUTHOR</option>
+                    <option value="0">MOD_TZ_GUESTBOOK_GUEST</option>
+                </field>
+            </fieldset>
+            <fieldset name="view" label="MOD_TZ_GUESTBOOK_VIEW_FIELSET_LABEL">
+                <field name="show_saying" type="radio"
+                       class="btn-group" default="1"
+                       label="MOD_TZ_GUESTBOOK_SHOW_SAYING_LABEL">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="show_title" type="radio"
+                       class="btn-group" default="1"
+                       label="MOD_TZ_GUESTBOOK_SHOW_TITLE_LABEL">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="show_author" type="radio"
+                       class="btn-group" default="1"
+                       label="MOD_TZ_GUESTBOOK_SHOW_AUTHOR_LABEL">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="show_email" type="radio"
+                       class="btn-group" default="1"
+                       label="MOD_TZ_GUESTBOOK_SHOW_EMAIL_LABEL">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+                <field name="show_website" type="radio"
+                       class="btn-group" default="1"
+                       label="MOD_TZ_GUESTBOOK_SHOW_WEBSITE_LABEL">
+                    <option value="0">JHIDE</option>
+                    <option value="1">JSHOW</option>
+                </field>
+            </fieldset>
+            <fieldset name="advanced">
+                <field name="layout"
+                       type="modulelayout"
+                       label="JFIELD_ALT_LAYOUT_LABEL"
+                       description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+                <field name="moduleclass_sfx"
+                       type="text"
+                       label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+                       description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+                <field name="cache"
+                       type="list"
+                       default="1"
+                       label="COM_MODULES_FIELD_CACHING_LABEL"
+                       description="COM_MODULES_FIELD_CACHING_DESC">
+                    <option value="1">JGLOBAL_USE_GLOBAL</option>
+                    <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+                </field>
+                <field name="cache_time"
+                       type="text"
+                       default="900"
+                       label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+                       description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+                <field name="cachemode"
+                       type="hidden"
+                       default="static">
+                    <option value="static"></option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+</extension>

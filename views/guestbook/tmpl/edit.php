@@ -105,7 +105,7 @@ defined("_JEXEC") or die;
                         if(isset($this->detail->uname) && !empty($this->detail->uname) ){
                                 echo $this->detail->uname;
                             }else{
-                                echo JText::_("COM_TZ_GUESTBOOK_GLOBAL_USER_AUTHOR_");
+                                echo JText::_("COM_TZ_GUESTBOOK_GUEST");
                             }
                         ?>
                     </span>
