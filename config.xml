@@ -195,6 +195,33 @@
                description="COM_TZ_GUESTBOOK_DESCRIPTION_TIME_NOTICE">
 
           </field>
+		      <field name="type_send"
+               type="list"
+               default="0"
+               label="COM_TZ_GUESTBOOK_TYPE_SEND_LABEL"
+               description="COM_TZ_GUESTBOOK_TYPE_SEND_DESC">
+            <option value="0">COM_TZ_GUESTBOOK_NO_SEND</option>
+            <option value="1">COM_TZ_GUESTBOOK_SEND_ADMIN</option>
+            <option value="2">COM_TZ_GUESTBOOK_NO_USER</option>
+            <option value="3">COM_TZ_GUESTBOOK_SEND_ALL</option>
+        </field>
+		 <field type="spacer" hr="true"/>
+        <field name="formatmail"
+               type="editor"
+               filter="raw"
+			    width="100px"
+               default="&lt;p&gt;Dear Friend.&lt;/p&gt;
+                        &lt;p&gt;We have just got your letter from TZ GuestBook.&lt;/p&gt;
+						&lt;div&gt;   Name : {$author}&lt;/div&gt;
+						&lt;div&gt;  Email : {$email}&lt;/div&gt;
+						&lt;div&gt;   Title : {$title}&lt;/div&gt;
+						&lt;div&gt;   Website : {$website}&lt;/div&gt;
+						&lt;div&gt;   Message : {$message}&lt;/div&gt;
+						&lt;div&gt;   Link : {$link}&lt;/div&gt;
+                        &lt;p&gt;Thanks for sending. &lt;br/&gt;Best Regards. &lt;br/&gt;Templaza Team.&lt;/p&gt;"
+               label="COM_TZ_GUESTBOOK_FORMAT_MAIL_LABEL"
+               description="COM_TZ_GUESTBOOK_FORMAT_MAIL_DESC">
+        </field>
 
     </fieldset>
 </config>

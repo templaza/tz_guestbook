@@ -16,6 +16,7 @@
 # Technical Support:  Forum - http://templaza.com/Forum
 
 -------------------------------------------------------------------------*/
+defined('_JEXEC') or die;
 function tzguestbookimport($package)
 {
     $path = COM_TZ_GUESTBOOK_ADMIN_PATH . DIRECTORY_SEPARATOR . 'libraries' . DIRECTORY_SEPARATOR

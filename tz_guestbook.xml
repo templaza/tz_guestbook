@@ -7,7 +7,7 @@
     	<license>GNU/GPL v2 or later http://www.gnu.org/licenses/gpl-2.0.html</license>
     	<authorEmail>nguyenngoctu.vnn@gmail.com</authorEmail>
     	<authorUrl>www.templaza.com</authorUrl>
-    	<version>3.0.0</version>
+    	<version>3.1.0</version>
     	<description>Tz Guestbook help you write guestbook</description>
         <scriptfile>script.php</scriptfile>
              <install>
@@ -32,11 +32,14 @@
         </files>
          <languages folder="site">
     		<language tag="en-GB">language/en-GB/en-GB.com_tz_guestbook.ini</language>
+			<language tag="tr-TR">language/tr-TR/tr-TR.com_tz_guestbook.ini</language>
     	</languages>
     	<administration>
             <languages>
                 <language tag="en-GB">language/en-GB/en-GB.com_tz_guestbook.ini</language>
                 <language tag="en-GB">language/en-GB/en-GB.com_tz_guestbook.sys.ini</language>
+				<language tag="tr-TR">language/tr-TR/tr-TR.com_tz_guestbook.ini</language>
+                <language tag="tr-TR">language/tr-TR/tr-TR.com_tz_guestbook.sys.ini</language>
              </languages>
     		<files>
                 <folder>controllers</folder>
@@ -48,7 +51,6 @@
                 <folder>libraries</folder>
                 <folder>models</folder>
                 <folder>views</folder>
-
                 <filename>config.xml</filename>
     			<filename>index.html</filename>
     			<filename>tz_guestbook.php</filename>
@@ -57,9 +59,8 @@
             <submenu>
                 <menu link="option=com_tz_guestbook&amp;view=guestbook">guestbook</menu>
             </submenu>
-
     	</administration>
-    <config>
+		<config>
             <fields>
                 <field name="shownow" default="1" />
                 <field name="rows_ts" default="5" />
@@ -77,9 +78,19 @@
                 <field name="textcomment" default="2000"/>
                 <field name="timethongbao" default="2000"/>
                 <field name="sapxeplubut" default="0"/>
+				<field name="type_send" default="0"/>
+				<field name="formatmail" 
+					default="&lt;p&gt;Dear Friend.&lt;/p&gt;
+                        &lt;p&gt;We have just got your letter from TZ GuestBook.&lt;/p&gt;
+                        &lt;div&gt;{$author}&lt;/div&gt;
+                        &lt;div&gt;{$email}&lt;/div&gt;
+                        &lt;div&gt;{$title}&lt;/div&gt;
+                        &lt;div&gt;{$website}&lt;/div&gt;
+                        &lt;div&gt;{$message}&lt;/div&gt;
+                        &lt;div&gt;{$link}&lt;/div&gt;
+                        &lt;p&gt;Thanks for sending. &lt;br/&gt;Best Regards. &lt;br/&gt;Templaza Team.&lt;/p&gt;"/>
             </fields>
-    </config>
-
+		</config>
     <modules>
         <module module="mod_tz_guestbook" client="site" />
     </modules>
