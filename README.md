@@ -10,6 +10,10 @@ If you love TZ Guestbook, please help us review and vote for it on JED: http://e
 
 *** Changelog ***
 
+03/28/2014 - 3.1.0
+
+	Add option send mail and language Turkish.
+	
 08/22/2013 - 3.0.0
 
     Switch with joomla 2.5 (support for joomla 2.5 and joomla 3.x).
