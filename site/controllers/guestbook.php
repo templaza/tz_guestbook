@@ -19,35 +19,40 @@
 defined('_JEXEC') or die;
 jimport('joomla.application.component.controlleradmin');
 
-class  Tz_guestbookControllerGuestbook extends JControllerAdmin{
+class  Tz_guestbookControllerGuestbook extends JControllerAdmin
+{
 
-    function  display($cachable=false,$urlparams=array()){
-        $doc    = JFactory::getDocument();
-        $type   = $doc->getType();
-        $view   = $this -> getView('guestbook',$type);
-        $model  = $this->getModel('guestbook');
-        $view   -> setModel($model,true);
-        $task   = JRequest::getVar('task');
+    function  display($cachable = false, $urlparams = array())
+    {
+        $doc = JFactory::getDocument();
+        $type = $doc->getType();
+        $view = $this->getView('guestbook', $type);
+        $model = $this->getModel('guestbook');
+        $view->setModel($model, true);
+        $task = JRequest::getVar('task');
 
-        if($task=='add'){ // task = add
+        if ($task == 'add') { // task = add
             $check = $model->getCaptcha(); // call getCaptcha
-            if($check ==1){
-                echo $model -> ajax();
+            if ($check == 1) {
+                echo $model->ajax();
+                $model->TzSendEmail();
                 die();
-            }else if($check ==0){
+            } else if ($check == 0) {
                 echo 1;
                 die();
-            }else if($check ==2){
-                echo $model -> ajax();
+            } else if ($check == 2) {
+                echo $model->ajax();
+                $model->TzSendEmail();
                 die();
             }
-        }else if ($task=='add.ajax'){
+        } else if ($task == 'add.ajax') {
             echo $model->loadajax();
             die();
-        }else{
+        } else {
             $view->setLayout('default');
         }
         $view->display();
     }
 }
+
 ?>

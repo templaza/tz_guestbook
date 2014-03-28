@@ -2,184 +2,184 @@
 <metadata>
     <layout title="Guestbook" option="com_tz_guestbook_view_default_title">
 
-    		<message>
-    			<![CDATA[TZ GUESTBOOK]]>
-    		</message>
-    	</layout>
+        <message>
+            <![CDATA[TZ GUESTBOOK]]>
+        </message>
+    </layout>
     <fields name="params">
         <fieldset name="basic">
             <field
-                            name="title"
-                            type="list"
-                            label="COM_TZ_GUESTBOOK_SHOW_TITLE"
-                            default=""
-                            description="COM_TZ_GUESTBOOK_DO_YOU_WANT_SHOW_TITLE">
-                        <option value="">
-                            JGLOBAL_USE_GLOBAL
-                        </option>
-                        <option value="1">
-                                JSHOW
-                        </option>
-                        <option value="0">
-                                JHIDE
-                        </option>
-                    </field>
-                    <field
-                            name="name"
-                            type="list"
-                            label="COM_TZ_GUESTBOOK_SHOW_NAME"
-                            default=""
-                            description="COM_TZ_GUESTBOOK_DO_YOU_WANT_SHOW_NAME">
-                        <option value="">
-                            JGLOBAL_USE_GLOBAL
-                          </option>
-                         <option value="1">
-                             JSHOW
-                         </option>
-                        <option value="0">
-                            Hide
-                        </option>
-                    </field>
-                    <field
-                            name="date"
-                            type="list"
-                            label="COM_TZ_GUESTBOOK_SHOW_DATE"
-                            default=""
-                            description="COM_TZ_GUESTBOOK_DO_YOU_WANT_SHOW_DATE">
-                        <option value="">
-                            JGLOBAL_USE_GLOBAL
-                      </option>
-                       <option value="1">
-                           JSHOW
-                       </option>
-                        <option value="0">
-                            Hide
-                        </option>
-
-                    </field>
-
-                         <field
-                                    name="shownow"
-                                    type="list"
-                                    label="COM_TZ_GUESTBOOK_SHOW_GUESTBOOK"
-                                    default=""
-                                    description="COM_TZ_GUESTBOOK_DESCRIPTION_SHOW_GUESTBOOK">
-                             <option value="">
-                                 JGLOBAL_USE_GLOBAL
-                                </option>
-                                <option value="1">
-                                    JSHOW
-                                </option>
-                                <option value="0">
-                                        Hide
-                                </option>
-                        </field>
+                    name="title"
+                    type="list"
+                    label="COM_TZ_GUESTBOOK_SHOW_TITLE"
+                    default=""
+                    description="COM_TZ_GUESTBOOK_DO_YOU_WANT_SHOW_TITLE">
+                <option value="">
+                    JGLOBAL_USE_GLOBAL
+                </option>
+                <option value="1">
+                    JSHOW
+                </option>
+                <option value="0">
+                    JHIDE
+                </option>
+            </field>
             <field
-                            name="congiajax"
-                            type="list"
-                            label="COM_TZ_GUESTBOOK_TYPE_LAYOUT"
-                            default=""
-                            description="COM_TZ_GUESTBOOK_DESCRIPTION_TYPE_LAYOUT">
-                             <option value="">
-                                 JGLOBAL_USE_GLOBAL
-                              </option>
-                        <option value="1">
-                            COM_TZ_GUESTBOOK_BUTTOM_AJAX
-                        </option>
-                        <option value="2">
-                            COM_TZ_GUESTBOOK_AJAX_LINITE_SROLL
-                        </option>
-                        <option value="0">
-                            COM_TZ_GUESTBOOK_DEFAULT
-                        </option>
+                    name="name"
+                    type="list"
+                    label="COM_TZ_GUESTBOOK_SHOW_NAME"
+                    default=""
+                    description="COM_TZ_GUESTBOOK_DO_YOU_WANT_SHOW_NAME">
+                <option value="">
+                    JGLOBAL_USE_GLOBAL
+                </option>
+                <option value="1">
+                    JSHOW
+                </option>
+                <option value="0">
+                    Hide
+                </option>
+            </field>
+            <field
+                    name="date"
+                    type="list"
+                    label="COM_TZ_GUESTBOOK_SHOW_DATE"
+                    default=""
+                    description="COM_TZ_GUESTBOOK_DO_YOU_WANT_SHOW_DATE">
+                <option value="">
+                    JGLOBAL_USE_GLOBAL
+                </option>
+                <option value="1">
+                    JSHOW
+                </option>
+                <option value="0">
+                    Hide
+                </option>
 
-                    </field>
+            </field>
 
             <field
-                            name="showcaptchat"
-                            type="list"
-                            default=""
-                            label="COM_TZ_GUESTBOOK_SHOW_CAPTCHA"
-                            description="COM_TZ_GUESTBOOK_DESCRIPTION_SHOW_CAPTCHA">
-                            <option value="">
-                                JGLOBAL_USE_GLOBAL
-                            </option>
-                            <option value="1">
-                                JSHOW
-                            </option>
-                            <option value="0">
-                               JHIDE
-                            </option>
+                    name="shownow"
+                    type="list"
+                    label="COM_TZ_GUESTBOOK_SHOW_GUESTBOOK"
+                    default=""
+                    description="COM_TZ_GUESTBOOK_DESCRIPTION_SHOW_GUESTBOOK">
+                <option value="">
+                    JGLOBAL_USE_GLOBAL
+                </option>
+                <option value="1">
+                    JSHOW
+                </option>
+                <option value="0">
+                    Hide
+                </option>
+            </field>
+            <field
+                    name="congiajax"
+                    type="list"
+                    label="COM_TZ_GUESTBOOK_TYPE_LAYOUT"
+                    default=""
+                    description="COM_TZ_GUESTBOOK_DESCRIPTION_TYPE_LAYOUT">
+                <option value="">
+                    JGLOBAL_USE_GLOBAL
+                </option>
+                <option value="1">
+                    COM_TZ_GUESTBOOK_BUTTOM_AJAX
+                </option>
+                <option value="2">
+                    COM_TZ_GUESTBOOK_AJAX_LINITE_SROLL
+                </option>
+                <option value="0">
+                    COM_TZ_GUESTBOOK_DEFAULT
+                </option>
 
-                    </field>
-            <field
-                        name="website"
-                        type="list"
-                        default=""
-                        label="COM_TZ_GUESTBOOK_SHOW_WEBSITE"
-                        description="COM_TZ_GUESTBOOK_DISCRIPTION_SHOW_WEBSITE">
-                        <option value="">
-                            JGLOBAL_USE_GLOBAL
-                        </option>
-                        <option value="1">
-                            JSHOW
-                        </option>
-                        <option value="0">
-                            JHIDE
-                        </option>
-                    </field>
-             <field
-                        name="sapxeplubut"
-                        type="list"
-                        default=""
-                        label="COM_TZ_GUESTBOOK_ARRANGEMENTS_GUESTBOOK"
-                        description="COM_TZ_GUESTBOOK_DISCRIPTION_ARRANGEMENTS_GUESTBOOK">
-                         <option value="">
-                            JGLOBAL_USE_GLOBAL
-                        </option>
-                        <option value="1">
-                            COM_TZ_GUESTBOOK_ASC
-                        </option>
-                        <option value="0">
-                            COM_TZ_GUESTBOOK_DESC
-                        </option>
-                      </field>
-            <field
-                                        name="nnt_coludwidt"
-                                        type="text"
-                                        label="COM_TZ_GUESTBOOK_ARTICLE_WIDTH"
-                                        default=""
-                                        description="COM_TZ_GUESTBOOK_DESCRIPTION_ARTICLE_WIDTH">
+            </field>
 
-                                </field>
             <field
-                                       name="rows_ts"
-                                        type="text"
-                                         label="COM_TZ_GUESTBOOK_ARTICLES_LIMIT"
-                                         default=""
-                                         description="COM_TZ_GUESTBOOK_YOU_WANT_ARTICLES_HOW_MANY_LIMIT">
-                                      </field>
+                    name="showcaptchat"
+                    type="list"
+                    default=""
+                    label="COM_TZ_GUESTBOOK_SHOW_CAPTCHA"
+                    description="COM_TZ_GUESTBOOK_DESCRIPTION_SHOW_CAPTCHA">
+                <option value="">
+                    JGLOBAL_USE_GLOBAL
+                </option>
+                <option value="1">
+                    JSHOW
+                </option>
+                <option value="0">
+                    JHIDE
+                </option>
+
+            </field>
             <field
-                name="texename"
-                type="text"
-                default=""
-                label="COM_TZ_GUESTBOOK_TEXT_NAME"
-                description="COM_TZ_GUESTBOOK_DESCRIPTION_TEXT_NAME">
-         </field>
+                    name="website"
+                    type="list"
+                    default=""
+                    label="COM_TZ_GUESTBOOK_SHOW_WEBSITE"
+                    description="COM_TZ_GUESTBOOK_DISCRIPTION_SHOW_WEBSITE">
+                <option value="">
+                    JGLOBAL_USE_GLOBAL
+                </option>
+                <option value="1">
+                    JSHOW
+                </option>
+                <option value="0">
+                    JHIDE
+                </option>
+            </field>
+            <field
+                    name="sapxeplubut"
+                    type="list"
+                    default=""
+                    label="COM_TZ_GUESTBOOK_ARRANGEMENTS_GUESTBOOK"
+                    description="COM_TZ_GUESTBOOK_DISCRIPTION_ARRANGEMENTS_GUESTBOOK">
+                <option value="">
+                    JGLOBAL_USE_GLOBAL
+                </option>
+                <option value="1">
+                    COM_TZ_GUESTBOOK_ASC
+                </option>
+                <option value="0">
+                    COM_TZ_GUESTBOOK_DESC
+                </option>
+            </field>
+            <field
+                    name="nnt_coludwidt"
+                    type="text"
+                    label="COM_TZ_GUESTBOOK_ARTICLE_WIDTH"
+                    default=""
+                    description="COM_TZ_GUESTBOOK_DESCRIPTION_ARTICLE_WIDTH">
+
+            </field>
+            <field
+                    name="rows_ts"
+                    type="text"
+                    label="COM_TZ_GUESTBOOK_ARTICLES_LIMIT"
+                    default=""
+                    description="COM_TZ_GUESTBOOK_YOU_WANT_ARTICLES_HOW_MANY_LIMIT">
+            </field>
+            <field
+                    name="texename"
+                    type="text"
+                    default=""
+                    label="COM_TZ_GUESTBOOK_TEXT_NAME"
+                    description="COM_TZ_GUESTBOOK_DESCRIPTION_TEXT_NAME">
+            </field>
             <field
                     name="texemail"
                     type="text"
                     default=""
                     label="COM_TZ_GUESTBOOK_TEXT_EMAIL"
                     description="COM_TZ_GUESTBOOK_DESCRIPTION_TEXT_EMAIL">
-             </field>
+            </field>
             <field
-                                name="texwebsite"
-                                type="text"
-                                default=""
-                                label="COM_TZ_GUESTBOOK_TEXT_WEBSITE"
-                                description="COM_TZ_GUESTBOOK_DESCRIPTION_TEXT_WEBSITE">
-              </field>
+                    name="texwebsite"
+                    type="text"
+                    default=""
+                    label="COM_TZ_GUESTBOOK_TEXT_WEBSITE"
+                    description="COM_TZ_GUESTBOOK_DESCRIPTION_TEXT_WEBSITE">
+            </field>
 
             <field
                     name="textitle"
@@ -202,14 +202,25 @@
                     default=""
                     label="COM_TZ_GUESTBOOK_TIME_NOTICE"
                     description="COM_TZ_GUESTBOOK_DESCRIPTION_TIME_NOTICE">
-
             </field>
-
-
-
-
-
-
+            <field name="type_send"
+                   type="list"
+                   default=""
+                   label="COM_TZ_GUESTBOOK_TYPE_SEND_LABEL"
+                   description="COM_TZ_GUESTBOOK_TYPE_SEND_DESC">
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="0">COM_TZ_GUESTBOOK_NO_SEND</option>
+                <option value="1">COM_TZ_GUESTBOOK_SEND_ADMIN</option>
+                <option value="2">COM_TZ_GUESTBOOK_NO_USER</option>
+                <option value="3">COM_TZ_GUESTBOOK_SEND_ALL</option>
+            </field>
+            <field name="formatmail"
+                   type="editor"
+                   filter="raw"
+                   default=""
+                   label="COM_TZ_GUESTBOOK_FORMAT_MAIL_LABEL"
+                   description="COM_TZ_GUESTBOOK_FORMAT_MAIL_DESC">
+            </field>
         </fieldset>
     </fields>
 </metadata>
