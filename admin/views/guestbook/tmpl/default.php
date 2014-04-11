@@ -101,6 +101,9 @@ defined("_JEXEC") or die;
                             <?php echo JHtml::_('grid.sort', 'JGLOBAL_TITLE', 'tz.title', $listDirn, $listOrder); ?>
                         </th>
                         <th width="15%" class="nowrap hidden-phone">
+                            <?php echo JHtml::_('grid.sort','Category','tz.category',$listDirn,$listOrder); ?>
+                        </th>
+                        <th width="15%" class="nowrap hidden-phone">
                             <?php echo JHtml::_('grid.sort','Author','tz.author',$listDirn,$listOrder); ?>
                         </th>
                         <th width="20%" class="nowrap hidden-phone">
@@ -145,6 +148,11 @@ defined("_JEXEC") or die;
                                         endif;
                                             echo JHtml::_('dropdown.render');
                                     ?>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="pull-left">
+                                    <?php echo $num->jtitle;?>
                                 </div>
                             </td>
                             <td class="small hidden-phone">

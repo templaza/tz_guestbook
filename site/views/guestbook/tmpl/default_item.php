@@ -18,78 +18,77 @@
 -------------------------------------------------------------------------*/
 defined("_JEXEC") or die;
 
-if (isset($this->display) && !empty($this->display)) {
-    foreach ($this->display as $rr) {
-        ?>
+if (isset($this->display) && !empty($this->display)) :
+    foreach ($this->display as $rr) :?>
         <div class="warp-comment">
             <div class="nnt-warp-comment-class">
                 <ul>
                     <?php
-                    if (isset($this->nam) && $this->nam == 1) {
-                        ?>
+                    if (isset($this->nam) && $this->nam == 1) :?>
                         <li class="nnt-warl-comment-li-1">
-                                <span>
-                                    <?php echo JText::_('COM_TZ_GUESTBOOK_AUTHOR'); ?>
-                                </span>
-                                <span>
-                                    <?php echo $rr->cname; ?>
-                                </span>
+                            <span>
+                                <?php echo JText::_('COM_TZ_GUESTBOOK_AUTHOR'); ?>
+                            </span>
+                            <span>
+                                <?php echo $rr->cname; ?>
+                            </span>
                         </li>
-                    <?php } ?>
+                    <?php endif; ?>
                     <?php
-                    if (isset($this->dat) && $this->dat == 1) {
-                        ?>
+                    if (isset($this->dat) && $this->dat == 1) :?>
                         <li class="nnt-warl-comment-li-2">
-                                <span>
-                                    <?php echo JText::_('COM_TZ_GUESTBOOK_CREATE_DATE'); ?>
-                                </span>
-                                <span>
-                                    <?php echo $rr->cdate; ?>
-                                </span>
+                            <span>
+                                <?php echo JText::_('COM_TZ_GUESTBOOK_CREATE_DATE'); ?>
+                            </span>
+                            <span>
+                                <?php echo $rr->cdate; ?>
+                            </span>
                         </li>
-                    <?php } ?>
+                    <?php endif; ?>
+
+                    <?php if ($this->category == 1): ?>
+                        <li class="nnt-warl-comment-li-1">
+                            <span>
+                                <?php echo JText::_('COM_TZ_GUESTBOOK_CATEGORY'); ?>
+                            </span>
+                            <span>
+                                <?php echo $rr->jtitle; ?>
+                            </span>
+                        </li>
+                    <?php endif; ?>
                     <?php
-                    if (isset($this->fweb) && $this->fweb == 1 && !empty($rr->cwebsite)) {
-                        ?>
+                    if (isset($this->fweb) && $this->fweb == 1 && !empty($rr->cwebsite)) :?>
                         <li class="nnt-warl-comment-li-3">
-                                <span>
-                                    <?php echo JText::_('COM_TZ_GUESTBOOK_WEBSITE_SITE'); ?>
-                                </span>
+                            <span>
+                                <?php echo JText::_('COM_TZ_GUESTBOOK_WEBSITE_SITE'); ?>
+                            </span>
                             <a target="_blank" href="<?php echo $rr->cwebsite; ?>" rel="nofollow">
-                                <?php
-                                if (!empty($rr->cwebsite)) {
+                                <?php if (!empty($rr->cwebsite)) :
                                     echo $rr->cwebsite;
-                                } else {
+                                else :
                                     echo JText::_("COM_TZ_GUESTBOOK_NOT_WEBSITE_SITE");
-                                }
-                                ?>
+                                endif;?>
                             </a>
                         </li>
-                    <?php } ?>
-                    <?php
-                    if ($rr->cpublic == 1) {
-                        ?>
+                    <?php endif; ?>
+                    <?php if ($rr->cpublic == 1) : ?>
                         <li class="nnt-warl-comment-li-4">
-                                <span>
-                                    <?php echo JText::_('COM_TZ_GUESTBOOK_EMAIL'); ?>
-                                </span>
-                                <span>
-                                    <?php
-                                    echo $rr->cemail;
-                                    ?>
-                                </span>
+                            <span>
+                                <?php echo JText::_('COM_TZ_GUESTBOOK_EMAIL'); ?>
+                            </span>
+                            <span>
+                                <?php echo $rr->cemail; ?>
+                            </span>
                         </li>
-                    <?php } ?>
+                    <?php endif; ?>
 
-                    <?php
-                    if (isset($this->tit) && $this->tit == 1) {
-                        ?>
+                    <?php if (isset($this->tit) && $this->tit == 1) : ?>
                         <li class="nnt-warl-comment-li-title">
-                                <span>
+                            <span>
                                 <?php echo $rr->ctitle; ?>
-                                </span>
+                            </span>
                         </li>
-                    <?php } ?>
+                    <?php endif; ?>
                     <li class="nnt-warl-comment-li-comment">
                         <p>
                             <?php echo $rr->ccontent; ?>
@@ -99,6 +98,6 @@ if (isset($this->display) && !empty($this->display)) {
             </div>
         </div>
     <?php
-    }
-}
+    endforeach;
+endif;
 ?>

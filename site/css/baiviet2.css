@@ -151,6 +151,10 @@ main #nnt_comment_a1:link,
     height: auto;
     clear: both;
     margin-top: 10px;
+    position: relative;
+    min-height: 30px;
+    text-align: left;
+    margin-left: 20px;
 }
 
 .warp-in2 {
@@ -188,7 +192,6 @@ main #nnt_comment_a1:link,
     margin-left: 20px;
 
 }
-
 #nnt-comment-label-capchat {
     width: 20%;
     height: 50px;
@@ -295,6 +298,14 @@ main #nnt_comment_a1:link,
     text-align: left;
     display: none;
     font-family: georgia;
+}
+
+.tz_input_category {
+    color: #FF0000;
+    display: none;
+    font-family: georgia;
+    padding-left: 20px;
+    text-align: left;
 }
 
 /* ket thuc the from */

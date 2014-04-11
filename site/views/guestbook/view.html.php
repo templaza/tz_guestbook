@@ -24,11 +24,14 @@ class Tz_guestbookViewGuestbook extends JViewLegacy
 
     function display($tpl = null)
     {
+        JHtml::_('behavior.framework');
         $state = $this->get('State')->get('params');
+
         $titl = $state->get('title');
         $showcapcha = $state->get('showcaptchat');
         $name = $state->get('name');
         $date = $state->get('date');
+
         $this->form = $this->get('Form');
         $nnt_width = $state->get('nnt_coludwidt');
         $configajx = $state->get('congiajax');
@@ -56,9 +59,12 @@ class Tz_guestbookViewGuestbook extends JViewLegacy
         $this->assign('dat', $date);
         $this->assign('nam', $name);
         $this->assign('tit', $titl);
+        $this->assign('category',$state->get('showCate'));
         $this->assign('display', $this->get('List'));
         $this->assign('auth', $this->get('Author2'));
         $this->assign('pagination', $this->get('Pagination'));
+        $this->assign('listcate', $this->get('Category'));
+        $this->assign('catid',$state->get('id'));
         parent::display($tpl);
     }
 }

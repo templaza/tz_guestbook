@@ -222,7 +222,13 @@ jQuery(document).ready(function () {
         }
     }); // end comment
     // end fom
+    jQuery('#jform_mycategory').blur(function () {
+        var scate = jQuery('#jform_mycategory').val();
+        if (scate != 0) {
+            jQuery('#s_category').hide();
+        }
 
+    });
     //-----------------------------------------------------------------------------------------//
 
     jQuery('#warp-input-sub').click(function () {
@@ -246,10 +252,19 @@ jQuery(document).ready(function () {
         var loiwebsite = jQuery('#warp-input4');
         var p_website = document.getElementById("p_website");
 
+        var scate = jQuery('#jform_mycategory').attr('value');
+        var l_cate = jQuery('#jform_mycategory');
+        var p_cate = document.getElementById("s_category");
+
         var str2 = /^([a-zA-Z0-9_\.])+\@([a-zA-Z0-9_\-])+\.([a-zA-Z]{2,4})([a-z-A-Z\.]{2,4})?$/;
         var srt3 = /^http(s)?:\/\/(www\.)?([a-zA-Z0-9\_])+\.([a-zA-Z0-9\/]{1,5})+(\.[A-Za-z0-9\/]{1,4})?([a-zA-Z0-9\/\.&=_\+\#\-\?]*)?$/
 
-
+        if (scate == 0) {
+            jQuery('.tz_input_category').css("display", "block");
+            p_cate.innerHTML = "<?php echo JText::_('COM_TZ_GUESTBOOK_MUST_BE_CHOOSE_CATEGORY');?>";
+            l_cate.focus();
+            return false;
+        }
         if (subname == "") {
             jQuery(".tz_input_name").css("display", "block");
             pp.innerHTML = "<?PHP echo JText::_("COM_TZ_GUESTBOOK_YOU_NOT_BE_EMPTY"); ?>";
@@ -272,9 +287,7 @@ jQuery(document).ready(function () {
             erroemail.focus();
             return false;
         }
-        <?php
-        if($this->tit ==1){
-        ?>
+        <?php if($this->tit ==1):?>
         if (subtitle == "") {
             jQuery(".tz_input_title").css("display", "block");
             ptitle.innerHTML = "<?php echo JText::_("COM_TZ_GUESTBOOK_YOU_NOT_BE_EMPTY"); ?>";
@@ -286,10 +299,8 @@ jQuery(document).ready(function () {
             errotitle.focus();
             return false;
         }
-        <?php } ?>
-        <?php
-        if(isset($this->fweb) && $this->fweb ==1 ){
-        ?>
+        <?php endif; ?>
+        <?php if(isset($this->fweb) && $this->fweb ==1 ):?>
         if (websi != "" && websi != "Your website") {
             if (srt3.test(websi) == false) {
                 jQuery(".tz_input_website").css("display", "block");
@@ -298,7 +309,7 @@ jQuery(document).ready(function () {
                 return false;
             }
         }
-        <?php } ?>
+        <?php endif; ?>
         if (subcontent == "") {
             jQuery(".tz_input_comment").css("display", "block");
             p_nntconten.innerHTML = "<?php echo JText::_("COM_TZ_GUESTBOOK_YOU_NOT_BE_EMPTY"); ?>";
@@ -315,7 +326,6 @@ jQuery(document).ready(function () {
         if (data_input.attr('checked')) {
             inp = (data_input.attr('value'));
         }
-
         jQuery.ajax({
             url: 'index.php?option=com_tz_guestbook&view=guestbook&task=add&Itemid=<?php echo JRequest::getVar('Itemid'); ?>',
             type: 'post',
@@ -325,6 +335,7 @@ jQuery(document).ready(function () {
                 title: jQuery('#warp-input3').attr('value'),
                 website: jQuery("#warp-input4").attr('value'),
                 content: jQuery('#text-ra').attr('value'),
+                category: jQuery('#jform_mycategory').attr('value'),
                 "<?php echo JSession::getFormToken(); ?>": 1,
                 recaptcha_response_field: jQuery('#recaptcha_response_field').attr('value'),
                 recaptcha_challenge_field: jQuery('#recaptcha_challenge_field').attr('value'),
@@ -334,7 +345,8 @@ jQuery(document).ready(function () {
 
                 var checkcapta = jQuery('#checkcapcha').attr('value');
                 if (checkcapta == 1) {
-                    javascript:Recaptcha.reload();
+//                   Recaptcha.reload();
+
                 }
                 var statuss = <?php echo $this->hstatus; ?>;
                 if (statuss == 1) {
@@ -342,14 +354,13 @@ jQuery(document).ready(function () {
                     tz_init(<?php echo $this->nnt_width ?>);
                 }
                 if (data == 1) {
-
                     jQuery("#nnt-comment-input-loi-capchat").slideDown();
                     jQuery("#nnt-comment-input-loi-capchat").animate({
                         "opacity": "hide"
                     }, 3000);
                     document.getElementById("nnt_p_capchar").innerHTML = " <?php echo JText::_("COM_TZ_GUESTBOOK_YOU_ENTER_THE_WRONG_CAPTCHA"); ?>";
                 }
-                if (data != 1) {
+                if (!jQuery.isNumeric(data)) {
                     jQuery('#warp-input3').attr('value', '<?php echo JText::_("COM_TZ_GUESTBOOK_TITLE"); ?>');
                     jQuery('#text-ra').attr('value', '<?PHP echo JText::_("COM_TZ_GUESTBOOK_YOUR_GUESTBOOK"); ?>');
                     jQuery('#warp-fom').hide();
@@ -360,44 +371,67 @@ jQuery(document).ready(function () {
                         jQuery('#tz-Guestbook-warp').fadeOut();
                     });
                 }
+                else {
+                    if (data == '2') {
+                        var nameHTML = jQuery('.tz_input_name');
+                        nameHTML.css("display", "block");
+                        pp.innerHTML = '<?php echo JText::_('COM_TZ_GUESTBOOK_ERROR_NAME');?>';
+                        nameHTML.focus();
+                    }
+                    if (data == '3') {
+                        var emailHTML = jQuery('.tz_input_email');
+                        emailHTML.css("display", "block");
+                        ppemail.innerHTML = '<?php echo JText::_('COM_TZ_GUESTBOOK_ERROR_EMAIL');?>';
+                        emailHTML.focus();
+                    }
+                    if (data == '4') {
+                        var titleHTML = jQuery('.tz_input_title');
+                        titleHTML.css("display", "block");
+                        ptitle.innerHTML = '<?php echo JText::_('COM_TZ_GUESTBOOK_ERROR_TITLE');?>';
+                        titleHTML.focus();
+                    }
+                    if (data == '5') {
+                        var messageHTML = jQuery('.tz_input_comment');
+                        messageHTML.css("display", "block");
+                        p_nntconten.innerHTML = '<?php echo JText::_('COM_TZ_GUESTBOOK_ERROR_COMMENT');?>';
+                        messageHTML.focus();
+                    }
+                    if (data == '6') {
+                        var websiteHTML = jQuery('.tz_input_website');
+                        websiteHTML.css("display", "block");
+                        p_website.innerHTML = '<?php echo JText::_('COM_TZ_GUESTBOOK_ERROR_WEBSITE');?>';
+                        websiteHTML.focus();
+                    }
+                }
             });
     });
 });
 </script>
 <div id="TZGuestBook">
-    <?php
-    echo $this->loadTemplate('form');
-    ?>
+    <?php echo $this->loadTemplate('form'); ?>
     <div id="wrap-baiviet" class="transitions-enabled clearfix">
-        <?php
-        echo $this->loadTemplate('item');
-        ?>
+        <?php echo $this->loadTemplate('item'); ?>
         <div class="clearr"></div>
     </div>
     <?php
-    if ($this->conajx == 0) {
+    if ($this->conajx == 0) :
         $paging_Default = $this->pagination->getPagesLinks();
-    if (isset($paging_Default) && !empty($paging_Default)) {
-        ?>
+    if (isset($paging_Default) && !empty($paging_Default)) : ?>
         <div class="pagination pagination-toolbar ">
             <?php echo $this->pagination->getPagesLinks(); ?>
         </div>
-    <?php
-    }
-    }
-    else {
-    ?>
+    <?php  endif;
+    else : ?>
+
         <div id="tz_append">
-            <?php
-            if ($this->conajx == 1) {
-                ?>
+            <?php if ($this->conajx == 1) : ?>
                 <a class="btn btn-large-tz" id="tz_append-a"
                    href="#tz_append"><?php echo JText::_("COM_TZ_GUESTBOOK_ADD_ITEMS"); ?></a>
+
                 <p class="btn btn-large-tz"><?php echo JText::_("COM_TZ_GUESTBOOK_NO_ITEMS"); ?></p>
-            <?php
-            }
-            ?>
+            <?php endif; ?>
         </div>
+
         <div id="loadaj" style="display: none;">
             <a href="<?php echo JURI::root() . 'index.php?option=com_tz_guestbook&view=guestbook&task=add.ajax&page=2&Itemid=' . JRequest::getInt('Itemid'); ?>">
             </a>
@@ -437,16 +471,14 @@ jQuery(document).ready(function () {
                         jQuery('div#tz_append').find('a:first').show();
                     }
                 });
-            <?php if($this->conajx == 1){?>
+            <?php if($this->conajx == 1):?>
             jQuery(window).unbind('.infscr');
             jQuery('#tz_append >a').click(function () {
                 jQuery(this).stop();
                 jQuery('div#tz_append').find('a:first').hide();
                 $container.infinitescroll('retrieve');
             });
-            <?php } ?>
+            <?php endif; ?>
         </script>
-    <?php
-    }
-    ?>
+    <?php endif; ?>
 </div>
