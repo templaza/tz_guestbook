@@ -33,6 +33,8 @@
          <languages folder="site">
     		<language tag="en-GB">language/en-GB/en-GB.com_tz_guestbook.ini</language>
 			<language tag="tr-TR">language/tr-TR/tr-TR.com_tz_guestbook.ini</language>
+			<language tag="fi-FI">language/fi-FI/fi-FI.com_tz_guestbook.ini</language>
+			<language tag="ru-RU">language/ru-RU/ru-RU.com_tz_guestbook.ini</language>
     	</languages>
     	<administration>
             <languages folder="admin">
@@ -40,6 +42,10 @@
                 <language tag="en-GB">language/en-GB/en-GB.com_tz_guestbook.sys.ini</language>
 				<language tag="tr-TR">language/tr-TR/tr-TR.com_tz_guestbook.ini</language>
                 <language tag="tr-TR">language/tr-TR/tr-TR.com_tz_guestbook.sys.ini</language>
+				<language tag="fi-FI">language/fi-FI/fi-FI.com_tz_guestbook.ini</language>
+                <language tag="fi-FI">language/fi-FI/fi-FI.com_tz_guestbook.sys.ini</language>
+				<language tag="ru-RU">language/ru-RU/ru-RU.com_tz_guestbook.ini</language>
+                <language tag="ru-RU">language/ru-RU/ru-RU.com_tz_guestbook.sys.ini</language>
              </languages>
     		<files folder="admin">
                 <folder>controllers</folder>
