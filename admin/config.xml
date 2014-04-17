@@ -205,8 +205,7 @@
 						&lt;div&gt;   Category : {$category}&lt;/div&gt;
 						&lt;div&gt;   Title : {$title}&lt;/div&gt;
 						&lt;div&gt;   Website : {$website}&lt;/div&gt;
-						&lt;div&gt;   Message : {$message}&lt;/div&gt;
-						&lt;div&gt;   Link : {$link}&lt;/div&gt;
+						&lt;div&gt;   Message : {$message}&lt;/div&gt;						
                         &lt;p&gt;Thanks for sending. &lt;br/&gt;Best Regards. &lt;br/&gt;Templaza Team.&lt;/p&gt;"
                label="COM_TZ_GUESTBOOK_FORMAT_MAIL_LABEL"
                description="COM_TZ_GUESTBOOK_FORMAT_MAIL_DESC">

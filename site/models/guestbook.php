@@ -349,31 +349,27 @@ class Tz_guestbookModelGuestbook extends JModelForm
             $message = $getId->content;
             $email = $getId->email;
             $author = $getId->name;
-			$category = $getId->title;
-            $link = $this->getGuestBookDetailRoute($id);
+			$category = $getId->title;            
             $value = array();
             $value[0] = $title;
             $value[1] = $message;
             $value[2] = $website;
             $value[3] = $author;
-            $value[4] = $email;
-            $value[5] = $link;
-			$value[6] = $category;
+            $value[4] = $email;            
+			$value[5] = $category;
             $filter_title = '/\{\$title\}/';
             $filter_message = '/\{\$message\}/';
             $filter_website = '/\{\$website\}/';
             $filter_author = '/\{\$author\}/';
-            $filter_email = '/\{\$email\}/';
-            $filter_link = '/\{\$link\}/';
+            $filter_email = '/\{\$email\}/';            
 			$filter_category = '/\{\$category\}/';
             $filter = array();
             $filter[0] = $filter_title;
             $filter[1] = $filter_message;
             $filter[2] = $filter_website;
             $filter[3] = $filter_author;
-            $filter[4] = $filter_email;
-            $filter[5] = $filter_link;
-			$filter[6] = $filter_category;
+            $filter[4] = $filter_email;            
+			$filter[5] = $filter_category;
 
             if (preg_match($filter_title, $str) or preg_match($filter_message, $str) or preg_match($filter_website, $str) or preg_match($filter_author, $str) or preg_match($filter_email, $str) or preg_match($filter_category, $str) ) {
                 $str = preg_replace($filter, $value, $str);
