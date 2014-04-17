@@ -8,21 +8,21 @@
     </layout>
     <fields name="params">
         <fieldset name="basic">
+            <field name="id" type="category"
+                   description="JGLOBAL_CHOOSE_CATEGORY_DESC"
+                   extension="com_tz_guestbook"
+                   label="JGLOBAL_CHOOSE_CATEGORY_LABEL">
+                <option value="">All Categories</option>
+            </field>
             <field
                     name="title"
                     type="list"
                     label="COM_TZ_GUESTBOOK_SHOW_TITLE"
                     default=""
                     description="COM_TZ_GUESTBOOK_DO_YOU_WANT_SHOW_TITLE">
-                <option value="">
-                    JGLOBAL_USE_GLOBAL
-                </option>
-                <option value="1">
-                    JSHOW
-                </option>
-                <option value="0">
-                    JHIDE
-                </option>
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
             </field>
             <field
                     name="name"
@@ -30,15 +30,20 @@
                     label="COM_TZ_GUESTBOOK_SHOW_NAME"
                     default=""
                     description="COM_TZ_GUESTBOOK_DO_YOU_WANT_SHOW_NAME">
-                <option value="">
-                    JGLOBAL_USE_GLOBAL
-                </option>
-                <option value="1">
-                    JSHOW
-                </option>
-                <option value="0">
-                    Hide
-                </option>
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="1">JSHOW</option>
+                <option value="0">Hide</option>
+            </field>
+            <field
+                    name="showCate"
+                    type="list"
+                    label="COM_TZ_GUESTBOOK_SHOW_CATEGORY_LABEL"
+                    default=""
+                    class="btn-group"
+                    description="COM_TZ_GUESTBOOK_SHOW_CATEGORY_DESC">
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
             </field>
             <field
                     name="date"
@@ -46,15 +51,9 @@
                     label="COM_TZ_GUESTBOOK_SHOW_DATE"
                     default=""
                     description="COM_TZ_GUESTBOOK_DO_YOU_WANT_SHOW_DATE">
-                <option value="">
-                    JGLOBAL_USE_GLOBAL
-                </option>
-                <option value="1">
-                    JSHOW
-                </option>
-                <option value="0">
-                    Hide
-                </option>
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="1">JSHOW</option>
+                <option value="0">Hide</option>
 
             </field>
 
@@ -64,15 +63,9 @@
                     label="COM_TZ_GUESTBOOK_SHOW_GUESTBOOK"
                     default=""
                     description="COM_TZ_GUESTBOOK_DESCRIPTION_SHOW_GUESTBOOK">
-                <option value="">
-                    JGLOBAL_USE_GLOBAL
-                </option>
-                <option value="1">
-                    JSHOW
-                </option>
-                <option value="0">
-                    Hide
-                </option>
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="1">JSHOW</option>
+                <option value="0">Hide</option>
             </field>
             <field
                     name="congiajax"
@@ -80,18 +73,10 @@
                     label="COM_TZ_GUESTBOOK_TYPE_LAYOUT"
                     default=""
                     description="COM_TZ_GUESTBOOK_DESCRIPTION_TYPE_LAYOUT">
-                <option value="">
-                    JGLOBAL_USE_GLOBAL
-                </option>
-                <option value="1">
-                    COM_TZ_GUESTBOOK_BUTTOM_AJAX
-                </option>
-                <option value="2">
-                    COM_TZ_GUESTBOOK_AJAX_LINITE_SROLL
-                </option>
-                <option value="0">
-                    COM_TZ_GUESTBOOK_DEFAULT
-                </option>
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="1">COM_TZ_GUESTBOOK_BUTTOM_AJAX</option>
+                <option value="2">COM_TZ_GUESTBOOK_AJAX_LINITE_SROLL</option>
+                <option value="0">COM_TZ_GUESTBOOK_DEFAULT</option>
 
             </field>
 
@@ -101,15 +86,9 @@
                     default=""
                     label="COM_TZ_GUESTBOOK_SHOW_CAPTCHA"
                     description="COM_TZ_GUESTBOOK_DESCRIPTION_SHOW_CAPTCHA">
-                <option value="">
-                    JGLOBAL_USE_GLOBAL
-                </option>
-                <option value="1">
-                    JSHOW
-                </option>
-                <option value="0">
-                    JHIDE
-                </option>
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
 
             </field>
             <field
@@ -118,15 +97,9 @@
                     default=""
                     label="COM_TZ_GUESTBOOK_SHOW_WEBSITE"
                     description="COM_TZ_GUESTBOOK_DISCRIPTION_SHOW_WEBSITE">
-                <option value="">
-                    JGLOBAL_USE_GLOBAL
-                </option>
-                <option value="1">
-                    JSHOW
-                </option>
-                <option value="0">
-                    JHIDE
-                </option>
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="1">JSHOW</option>
+                <option value="0">JHIDE</option>
             </field>
             <field
                     name="sapxeplubut"
@@ -134,15 +107,9 @@
                     default=""
                     label="COM_TZ_GUESTBOOK_ARRANGEMENTS_GUESTBOOK"
                     description="COM_TZ_GUESTBOOK_DISCRIPTION_ARRANGEMENTS_GUESTBOOK">
-                <option value="">
-                    JGLOBAL_USE_GLOBAL
-                </option>
-                <option value="1">
-                    COM_TZ_GUESTBOOK_ASC
-                </option>
-                <option value="0">
-                    COM_TZ_GUESTBOOK_DESC
-                </option>
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="1">COM_TZ_GUESTBOOK_ASC</option>
+                <option value="0">COM_TZ_GUESTBOOK_DESC</option>
             </field>
             <field
                     name="nnt_coludwidt"
@@ -202,25 +169,7 @@
                     default=""
                     label="COM_TZ_GUESTBOOK_TIME_NOTICE"
                     description="COM_TZ_GUESTBOOK_DESCRIPTION_TIME_NOTICE">
-            </field>
-            <field name="type_send"
-                   type="list"
-                   default=""
-                   label="COM_TZ_GUESTBOOK_TYPE_SEND_LABEL"
-                   description="COM_TZ_GUESTBOOK_TYPE_SEND_DESC">
-                <option value="">JGLOBAL_USE_GLOBAL</option>
-                <option value="0">COM_TZ_GUESTBOOK_NO_SEND</option>
-                <option value="1">COM_TZ_GUESTBOOK_SEND_ADMIN</option>
-                <option value="2">COM_TZ_GUESTBOOK_NO_USER</option>
-                <option value="3">COM_TZ_GUESTBOOK_SEND_ALL</option>
-            </field>
-            <field name="formatmail"
-                   type="editor"
-                   filter="raw"
-                   default=""
-                   label="COM_TZ_GUESTBOOK_FORMAT_MAIL_LABEL"
-                   description="COM_TZ_GUESTBOOK_FORMAT_MAIL_DESC">
-            </field>
+            </field>           
         </fieldset>
     </fields>
 </metadata>

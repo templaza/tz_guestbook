@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="2.5" method="upgrade">
     <name>com_tz_guestbook</name>
-    	<author>Tu Nguyen</author>
+    	<author>Tuan Nguyen</author>
     	<creationDate>November 2012</creationDate>
     	<copyright>(Copyright (C) 2012 TemPlaza. All rights reserved.</copyright>
     	<license>GNU/GPL v2 or later http://www.gnu.org/licenses/gpl-2.0.html</license>
-    	<authorEmail>nguyenngoctu.vnn@gmail.com</authorEmail>
+    	<authorEmail>support@templaza.com</authorEmail>
     	<authorUrl>www.templaza.com</authorUrl>
-    	<version>3.1.0</version>
+    	<version>3.2.0</version>
     	<description>Tz Guestbook help you write guestbook</description>
         <scriptfile>script.php</scriptfile>
              <install>
@@ -23,8 +23,11 @@
         <files folder="site">
                 <filename>index.html</filename>
                 <filename>tz_guestbook.php</filename>
+				<filename>router.php</filename>
                 <folder>views</folder>
                 <folder>models</folder>
+				<folder>helpers</folder>
+				<folder>libra</folder>
                 <folder>js</folder>
                 <folder>images</folder>
                 <folder>css</folder>
@@ -33,44 +36,57 @@
          <languages folder="site">
     		<language tag="en-GB">language/en-GB/en-GB.com_tz_guestbook.ini</language>
 			<language tag="tr-TR">language/tr-TR/tr-TR.com_tz_guestbook.ini</language>
+			<language tag="fi-FI">language/fi-FI/fi-FI.com_tz_guestbook.ini</language>
+			<language tag="ru-RU">language/ru-RU/ru-RU.com_tz_guestbook.ini</language>
     	</languages>
     	<administration>
-            <languages>
+            <languages folder="admin">
                 <language tag="en-GB">language/en-GB/en-GB.com_tz_guestbook.ini</language>
                 <language tag="en-GB">language/en-GB/en-GB.com_tz_guestbook.sys.ini</language>
 				<language tag="tr-TR">language/tr-TR/tr-TR.com_tz_guestbook.ini</language>
                 <language tag="tr-TR">language/tr-TR/tr-TR.com_tz_guestbook.sys.ini</language>
+				<language tag="fi-FI">language/fi-FI/fi-FI.com_tz_guestbook.ini</language>
+                <language tag="fi-FI">language/fi-FI/fi-FI.com_tz_guestbook.sys.ini</language>
+				<language tag="ru-RU">language/ru-RU/ru-RU.com_tz_guestbook.ini</language>
+                <language tag="ru-RU">language/ru-RU/ru-RU.com_tz_guestbook.sys.ini</language>
              </languages>
-    		<files>
+    		<files folder="admin">
                 <folder>controllers</folder>
                 <folder>css</folder>
                 <folder>helpers</folder>
                 <folder>install</folder>
-                <folder>js</folder>
+                <folder>js</folder>				
                 <folder>jui</folder>
                 <folder>libraries</folder>
                 <folder>models</folder>
                 <folder>views</folder>
+				<filename>access.xml</filename>
                 <filename>config.xml</filename>
     			<filename>index.html</filename>
     			<filename>tz_guestbook.php</filename>
     		</files>
             <menu>tz_guestbook</menu>
             <submenu>
-                <menu link="option=com_tz_guestbook&amp;view=guestbook">guestbook</menu>
+                <menu link="option=com_tz_guestbook&amp;view=guestbook">COM_TZ_GUESTBOOK_SUBMENU_GUESTBOOK</menu>
+                <menu link="option=com_categories&amp;extension=com_tz_guestbook">COM_TZ_GUESTBOOK_SUBMENU_CATEGORIES</menu>
             </submenu>
     	</administration>
 		<config>
             <fields>
+				<field name="id" defaukt=""/>
                 <field name="shownow" default="1" />
                 <field name="rows_ts" default="5" />
                 <field name="title" default="1" />
+				<field name="showCate" default="1"/>
                 <field name="name" default="1" />
                 <field name="date" default="1" />
                 <field name="congiajax" default="0" />
+				<field name="captcha" default="" />
+				<field name="showcaptchat" default="0" />
                 <field name="nnt_coludwidt" default="260" />
                 <field name="showcaptchat" default="0" />
                 <field name="website" default="1" />
+				<field name="rows_ts"  default="5" />
                 <field name="texename" default="200" />
                 <field name="texemail" default="200" />
                 <field name="texwebsite" default="200" />
@@ -79,15 +95,17 @@
                 <field name="timethongbao" default="2000"/>
                 <field name="sapxeplubut" default="0"/>
 				<field name="type_send" default="0"/>
+                <field name="removeText" default=""/>
 				<field name="formatmail" 
 					default="&lt;p&gt;Dear Friend.&lt;/p&gt;
                         &lt;p&gt;We have just got your letter from TZ GuestBook.&lt;/p&gt;
-                        &lt;div&gt;{$author}&lt;/div&gt;
-                        &lt;div&gt;{$email}&lt;/div&gt;
-                        &lt;div&gt;{$title}&lt;/div&gt;
-                        &lt;div&gt;{$website}&lt;/div&gt;
-                        &lt;div&gt;{$message}&lt;/div&gt;
-                        &lt;div&gt;{$link}&lt;/div&gt;
+						&lt;div&gt;   Name : {$author}&lt;/div&gt;
+						&lt;div&gt;  Email : {$email}&lt;/div&gt;
+							&lt;div&gt;   Category : {$category}&lt;/div&gt;
+						&lt;div&gt;   Title : {$title}&lt;/div&gt;
+						&lt;div&gt;   Website : {$website}&lt;/div&gt;
+						&lt;div&gt;   Message : {$message}&lt;/div&gt;
+						&lt;div&gt;   Link : {$link}&lt;/div&gt;
                         &lt;p&gt;Thanks for sending. &lt;br/&gt;Best Regards. &lt;br/&gt;Templaza Team.&lt;/p&gt;"/>
             </fields>
 		</config>

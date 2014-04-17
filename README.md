@@ -10,6 +10,15 @@ If you love TZ Guestbook, please help us review and vote for it on JED: http://e
 
 *** Changelog ***
 
+04/17/2014 - 3.2.0
+
+	Add new view List all categories and router.
+	
+04/11/2014 - 3.1.2
+	
+	Finnish and Russia language will be updated.
+	Add feature for Multi-Guestbook.
+	
 03/28/2014 - 3.1.0
 
 	Add option send mail and language Turkish.
