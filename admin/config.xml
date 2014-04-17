@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
-    <fieldset
-            name="comment"
-            label="COM_TZ_GUESTBOOK_0"
-            description="COM_TZ_GUESTBOOK_DISCRIPTION_0">
-
-        <field name="id" type="category"
+    <fields name="request">
+        <fieldset name="request" label="COM_TZ_GUESTBOOK_CHOOSE_CATEGORIES">
+           <field name="id" type="category"
                description="JGLOBAL_CHOOSE_CATEGORY_DESC"
                extension="com_tz_guestbook"
                label="JGLOBAL_CHOOSE_CATEGORY_LABEL">
             <option value="">JALL_CATEGORIES</option>
-        </field>
+			</field>
+        </fieldset>
+    </fields>
+    <fieldset
+            name="comment"
+            label="COM_TZ_GUESTBOOK_0"
+            description="COM_TZ_GUESTBOOK_DISCRIPTION_0">       
         <field
                 name="shownow"
                 type="radio"
