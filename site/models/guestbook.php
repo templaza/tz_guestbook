@@ -34,15 +34,15 @@ class Tz_guestbookModelGuestbook extends JModelForm
         $congiajax = $params->get('congiajax');
         $limit_row = $params->get('rows_ts');
         $remove_text = $params->get('removeText');
-        $limit_start = JRequest::getCmd('limitstart');
-        $chooseCate = $params->get('id');
+        $limit_start = JRequest::getCmd('limitstart');        
+		$id = JRequest::getVar('id');
         $this->setState('conf', $congiajax);
         $this->setState('showcap', $showcapcha);
         $this->setState('c_status', $h_status);
         $this->setState('limitt', $limit_row);
         $this->setState('offset', $limit_start);
         $this->setState('remove_text', $remove_text);
-        $this->setState('chooseCate', $chooseCate);
+        $this->setState('chooseCate', $id);
 
     }
 

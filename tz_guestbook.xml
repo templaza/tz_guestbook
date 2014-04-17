@@ -23,8 +23,11 @@
         <files folder="site">
                 <filename>index.html</filename>
                 <filename>tz_guestbook.php</filename>
+				<filename>router.php</filename>
                 <folder>views</folder>
                 <folder>models</folder>
+				<folder>helpers</folder>
+				<folder>libra</folder>
                 <folder>js</folder>
                 <folder>images</folder>
                 <folder>css</folder>
@@ -52,7 +55,7 @@
                 <folder>css</folder>
                 <folder>helpers</folder>
                 <folder>install</folder>
-                <folder>js</folder>
+                <folder>js</folder>				
                 <folder>jui</folder>
                 <folder>libraries</folder>
                 <folder>models</folder>
