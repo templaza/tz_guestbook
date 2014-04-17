@@ -6,14 +6,18 @@
             <![CDATA[TZ GUESTBOOK]]>
         </message>
     </layout>
-    <fields name="params">
-        <fieldset name="basic">
+	<fields name="request">
+        <fieldset name="request">
             <field name="id" type="category"
                    description="JGLOBAL_CHOOSE_CATEGORY_DESC"
                    extension="com_tz_guestbook"
                    label="JGLOBAL_CHOOSE_CATEGORY_LABEL">
                 <option value="">All Categories</option>
             </field>
+        </fieldset>
+    </fields>
+    <fields name="params">
+        <fieldset name="basic">            
             <field
                     name="title"
                     type="list"
