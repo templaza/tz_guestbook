@@ -5,7 +5,7 @@
 
 # ------------------------------------------------------------------------
 
-# author    TuNguyenTemPlaza
+# author    TuanNguyenTemPlaza
 
 # copyright Copyright (C) 2012 templaza.com. All Rights Reserved.
 
@@ -18,15 +18,21 @@
 -------------------------------------------------------------------------*/
 
 defined('_JEXEC') or die;
-//jimport('joomla.application.categories');
-//require_once(JPATH_COMPONENT . '/libra/categories.php');
-require_once(JPATH_SITE . '/components/com_tz_guestbook/libra/categories.php');
-class Tz_guestbookCategories extends Categories
+require_once(JPATH_SITE . '/components/com_tz_guestbook/libraries/categories.php');
+/**
+ * Content Component Category Tree
+ *
+ * @package     Joomla.Site
+ * @subpackage  com_content
+ * @since       1.6
+ */
+class TZ_guestbookCategories extends TZCategories
 {
     public function __construct($options = array())
     {
         $options['table'] = '#__comment';
         $options['extension'] = 'com_tz_guestbook';
+
         parent::__construct($options);
     }
 }

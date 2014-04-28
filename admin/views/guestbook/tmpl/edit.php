@@ -17,11 +17,11 @@
 
 -------------------------------------------------------------------------*/
 defined("_JEXEC") or die;
-    $document   =   JFactory::getDocument();
-    $document->addStyleSheet('components/com_tz_guestbook/css/edit.css');
+$document = JFactory::getDocument();
+$document->addStyleSheet('components/com_tz_guestbook/css/edit.css');
 
 ?>
-<form action="index.php?option=com_tz_guestbook" method="post"  name="adminForm" id="adminForm">
+<form action="index.php?option=com_tz_guestbook" method="post" name="adminForm" id="adminForm">
     <div id="warp-commemt">
         <div id="warp-commemt1">
             <ul>
@@ -47,6 +47,20 @@ defined("_JEXEC") or die;
                     </span>
                 </li>
                 <li class="cler"></li>
+                <?php
+                if ($this->detail->jtitle != null):?>
+                    <li class="conten-comment">
+                        <span>
+                            <?php echo JText::_('JCATEGORY'); ?>
+                        </span>
+                    </li>
+                    <li class="content-comment-right">
+                        <span>
+                            <?php echo $this->detail->jtitle; ?>
+                        </span>
+                    </li>
+                <?php endif; ?>
+                <li class="cler"></li>
                 <li class="conten-comment">
                     <span>
                         <?php echo JText::_("JSTATUS"); ?>
@@ -55,11 +69,11 @@ defined("_JEXEC") or die;
                 <li class="content-comment-right">
                     <span>
                     <?php
-                        if(isset($this->detail->cstatus) && $this->detail->cstatus ==1){
-                            echo JText::_("JSHOW");
-                        } else{
-                            echo JText::_("JHIDE");
-                        }
+                    if (isset($this->detail->cstatus) && $this->detail->cstatus == 1) {
+                        echo JText::_("JSHOW");
+                    } else {
+                        echo JText::_("JHIDE");
+                    }
                     ?>
                     </span>
                 </li>
@@ -73,11 +87,11 @@ defined("_JEXEC") or die;
                 <li class="content-comment-right">
                     <span>
                         <?php
-                            if(isset($this->detail->cpublic) && !empty($this->detail->cpublic)){
-                                echo JText::_("JSHOW");
-                            } else{
-                                echo JText::_("JHIDE");
-                            }
+                        if (isset($this->detail->cpublic) && !empty($this->detail->cpublic)) {
+                            echo JText::_("JSHOW");
+                        } else {
+                            echo JText::_("JHIDE");
+                        }
                         ?>
                     </span>
                 </li>
@@ -102,11 +116,11 @@ defined("_JEXEC") or die;
                 <li class="content-comment-right">
                     <span>
                         <?php
-                        if(isset($this->detail->uname) && !empty($this->detail->uname) ){
-                                echo $this->detail->uname;
-                            }else{
-                                echo JText::_("COM_TZ_GUESTBOOK_GUEST");
-                            }
+                        if (isset($this->detail->uname) && !empty($this->detail->uname)) {
+                            echo $this->detail->uname;
+                        } else {
+                            echo JText::_("COM_TZ_GUESTBOOK_GUEST");
+                        }
                         ?>
                     </span>
                 </li>
@@ -119,11 +133,11 @@ defined("_JEXEC") or die;
                 <li class="content-comment-right">
                     <span>
                         <?php
-                            if(isset($this->detail->cwebsite) && !empty($this->detail->cwebsite)){
-                                echo $this->detail->cwebsite;
-                            }else{
-                                echo JText::_("COM_TZ_GUESTBOOK_EMPTY");
-                            }
+                        if (isset($this->detail->cwebsite) && !empty($this->detail->cwebsite)) {
+                            echo $this->detail->cwebsite;
+                        } else {
+                            echo JText::_("COM_TZ_GUESTBOOK_EMPTY");
+                        }
                         ?>
                     </span>
                 </li>
@@ -137,6 +151,7 @@ defined("_JEXEC") or die;
                     <span>
                         <?php echo JText::_("JGLOBAL_TITLE"); ?>
                     </span>
+
                     <p>
                         <?php echo $this->detail->ctitle; ?>
                     </p>
@@ -145,6 +160,7 @@ defined("_JEXEC") or die;
                     <span>
                         <?php echo JText::_("COM_TZ_GUESTBOOK_GLOBAL_CONTENT"); ?>
                     </span>
+
                     <p>
                         <?php echo $this->detail->ccontent; ?>
                     </p>
@@ -153,8 +169,9 @@ defined("_JEXEC") or die;
         </div>
     </div>
 
-    <input type="hidden" name="option" value="com_tz_guestbook">
-    <input type="hidden" name="view" value="guestbook">
-    <input type="hidden" name="task" value="">
-    <input type="hidden" name="boxchecked" value="0">
+    <input type="hidden" name="option" value="com_tz_guestbook"/>
+    <input type="hidden" name="view" value="guestbook"/>
+    <input type="hidden" name="task" value=""/>
+    <input type="hidden" name="boxchecked" value="0"/>
+    <?php echo JHtml::_('form.token'); ?>
 </form>

@@ -38,13 +38,13 @@ class Tz_guestbookModelGuestbook extends JModelList
         $filer_search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search', '');
         $limit = $this->getUserStateFromRequest($this->context . 'limit', 'limit', '');
         $limitstartt = $this->getUserStateFromRequest($this->context . 'limitstart', 'limitstart', '');
-        $category = $this->getUserStateFromRequest($this->context.'filter.category_id','filter_category_id','');
+        $category = $this->getUserStateFromRequest($this->context . 'filter.category_id', 'filter_category_id', '');
         $this->setState('sata', $filer_public);
         $this->setState('autho', $filer_auto);
         $this->setState('lab1', $filert_order);
         $this->setState('lab2', $filert_order_dir);
         $this->setState('search', $filer_search);
-        $this->setState('cate',$category);
+        $this->setState('cate', $category);
         $this->setState('id_input', JRequest::getVar('cid'));
         $this->setState('detail2', JRequest::getInt('id'));
         $this->setState('limi', $limit);
@@ -118,9 +118,9 @@ class Tz_guestbookModelGuestbook extends JModelList
             $author = '';
         }
         //category
-        if(isset($cate) && !empty($cate)){
+        if (isset($cate) && !empty($cate)) {
             $filter_cate = "AND c.catid = $cate";
-        }else{
+        } else {
             $filter_cate = '';
         }
 
@@ -135,15 +135,15 @@ class Tz_guestbookModelGuestbook extends JModelList
             $q_search = '';
         }
 
-        $where = "where " . $satrus . " " . $author . " " . $q_search ." ".$filter_cate. " " . $ord;
-
+        $where = "where " . $satrus . " " . $author . " " . $q_search . " " . $filter_cate . " " . $ord;
 
         $db = JFactory::getDbo();
-        $sql = "SELECT u.name AS uname, c.id_cm AS cid, c.title AS ctitle, c.email AS cemail, c.status AS cstatus, c.public AS cpublic , j.title as jtitle
-                        FROM #__users AS u RIGHT JOIN #__comment AS c ON c.id_us  = u.id RIGHT  JOIN #__categories AS j ON c.catid = j.id
+
+        $sql = "SELECT u.name AS uname, c.id_cm AS cid, c.title AS ctitle, c.email AS cemail, c.status AS cstatus, c.public AS cpublic ,j.title as jtitle
+                        FROM #__users AS u RIGHT JOIN #__comment AS c ON c.id_us  = u.id LEFT  JOIN #__categories AS j ON c.catid = j.id
                         $where";
-        $sql2 = "SELECT u.name AS uname, c.id_cm AS cid, c.title AS ctitle, c.email AS cemail, c.status AS cstatus, c.public AS cpublic, j.title as jtitle
-                        FROM #__users AS u RIGHT JOIN #__comment AS c ON c.id_us  = u.id RIGHT  JOIN #__categories AS j ON c.catid = j.id
+        $sql2 = "SELECT u.name AS uname, c.id_cm AS cid, c.title AS ctitle, c.email AS cemail, c.status AS cstatus, c.public AS cpublic ,j.title as jtitle
+                        FROM #__users AS u RIGHT JOIN #__comment AS c ON c.id_us  = u.id LEFT  JOIN #__categories AS j ON c.catid = j.id
                         $where";
 
         $db->setQuery($sql);
@@ -152,7 +152,7 @@ class Tz_guestbookModelGuestbook extends JModelList
         $this->pagNav = new JPagination($total, $limitstart, $limit);
         $db->setQuery($sql2, $this->pagNav->limitstart, $this->pagNav->limit);
         $row = $db->loadObjectList();
-//        var_dump($row);
+
         return $row;
     }
 
@@ -185,7 +185,7 @@ class Tz_guestbookModelGuestbook extends JModelList
     */
     function unpulich()
     {
-        $idd = $this->getState('id_input');
+        $idd = JRequest::getVar('cid');
         $string = implode(",", $idd);
         $db = JFactory::getDbo();
         $sql = "UPDATE #__comment SET status =0 WHERE id_cm in($string)";
@@ -198,7 +198,7 @@ class Tz_guestbookModelGuestbook extends JModelList
     */
     function publish()
     {
-        $idd = $this->getState('id_input');
+        $idd =  JRequest::getVar('cid');
         $string = implode(",", $idd);
         $db = JFactory::getDbo();
         $sql = "UPDATE #__comment SET status =1 WHERE id_cm in($string)";
@@ -237,16 +237,25 @@ class Tz_guestbookModelGuestbook extends JModelList
             $id = 0;
         }
         $db = JFactory::getDbo();
+
         $sql = "SELECT c.name AS cname,  c.email AS cemail,  c.title AS ctitle, c.content AS ccontent,  c.public AS cpublic,
-                              c.date AS cdate, c.status AS cstatus, u.name AS uname,  c.website as cwebsite , j.title as jtitle
-                        FROM #__users AS u RIGHT JOIN #__comment AS c ON c.id_us  = u.id RIGHT  JOIN #__categories AS j ON c.catid = j.id
+                              c.date AS cdate, c.status AS cstatus, u.name AS uname,  c.website as cwebsite  ,j.title as jtitle
+                        FROM #__users AS u RIGHT JOIN #__comment AS c ON c.id_us  = u.id LEFT  JOIN #__categories AS j ON c.catid = j.id
                         WHERE c.id_cm = $id";
         $db->setQuery($sql);
         $db->query();
-//        var_dump($db->loadObject());
         $row = $db->loadObject();
 
         return $row;
+    }
+
+    function getCate()
+    {
+        $db = JFactory::getDbo();
+        $sql_cate = "SELECT * FROM #__categories where extension ='com_tz_guestbook' and published = 1";
+        $db->setQuery($sql_cate);
+        $count = $db->getNumRows($db->query());
+        return $count;
     }
 
 }

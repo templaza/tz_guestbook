@@ -19,7 +19,7 @@
 
 defined('JPATH_PLATFORM') or die;
 
-if (!COM_TZ_GUESTBOOK_JVERSION_COMPARE) {
+if (version_compare(JVERSION,'3.0','ge')) {
     require_once(JPATH_SITE . '/libraries/joomla/object/object.php');
 } else {
     require_once(JPATH_SITE . '/libraries/joomla/base/object.php');
