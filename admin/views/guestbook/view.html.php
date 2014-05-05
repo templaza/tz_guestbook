@@ -19,6 +19,15 @@
 defined("_JEXEC") or die;
 jimport('joomla.application.component.view');
 require_once(JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'tz_guestbook.php');
+if(!COM_TZ_GUESTBOOK_JVERSION_COMPARE){
+    require_once(JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'libraries/cms/html' . DIRECTORY_SEPARATOR . 'sidebar.php');
+    JHtml::addIncludePath(JPATH_COMPONENT . '/libraries/cms/html');    
+}
+
+JHtml::_('bootstrap.tooltip');
+JHtml::_('behavior.multiselect');
+JHtml::_('dropdown.init');
+JHtml::_('formbehavior.chosen', 'select');
 
 class Tz_guestbookViewGuestbook extends JViewLegacy
 {
@@ -27,6 +36,7 @@ class Tz_guestbookViewGuestbook extends JViewLegacy
 
     function display($tpl = null)
     {
+
         $state = $this->get('State');
         $status = $state->get('sata');
         $aut = $state->get('autho');
@@ -38,6 +48,7 @@ class Tz_guestbookViewGuestbook extends JViewLegacy
         $guest = new stdClass();
         $guest->value = 0;
         $guest->text = JText::_('COM_TZ_GUESTBOOK_GUEST');
+
         array_push($author, $guest);
         $this->assign('tz_search', $search);
         $this->assign('detail', $this->get('Detail'));
@@ -47,35 +58,52 @@ class Tz_guestbookViewGuestbook extends JViewLegacy
         $this->assign('star', $status);
         $this->assign('Hienthi', $this->get('List'));
         $this->assign('authors', $author);
-        $this->assign('category',$category);
+        $this->assign('category', $category);
         $this->assign('pagination', $this->get('Pagination'));
+        $this->assign('state', $state);
         $task = JRequest::getVar('task');
         Tz_guestbookHelper::addSubmenu('guestbook');
-        switch ($task) {
-            case'tz.edit':
-            case'g.edit':
-            case'guestbook.edit':
-                $this->adde();
-                break;
 
-            default:
-                $this->addTookBar();
-                $this->sidebar = JHtmlSidebar::render();
-                break;
+		if ($task == 'edit') {
+            $this->adde();
+        } else {
+            $this->addTookBar();
+            $this->sidebar = JHtmlSidebar::render();
         }
-
         parent::display($tpl);
     }
 
     function addTookBar()
     {
+        $user = JFactory::getUser();
+
+        // Get the toolbar object instance
+        $bar = JToolBar::getInstance('toolbar');
         JToolbarHelper::title(JText::_('COM_TZ_GUESTBOOK_2'), 'article.png');
-        JToolbarHelper::editList("tz.edit", JText::_('COM_TZ_GUESTBOOK_VIEW'));
-        JToolbarHelper::publishList("tz.publish");
-        JToolbarHelper::unpublishList("tz.unpublish");
+        JToolbarHelper::editList("guestbook.edit", JText::_('COM_TZ_GUESTBOOK_VIEW'));
+        JToolbarHelper::publishList("guest.publish");
+        JToolbarHelper::unpublishList("guest.unpublish");
         JToolBarHelper::preferences('com_tz_guestbook');
-        JToolbarHelper::deleteList("COM_TZ_GUESTBOOK_DELETE_GUESTBOOK");
-        JToolbarHelper::cancel("tz.cancel");
+        JToolbarHelper::deleteList("COM_TZ_GUESTBOOK_DELETE_GUESTBOOK", 'guestbook.remove');
+
+        if ($user->authorise('core.edit')) {
+            JHtml::_('bootstrap.modal', 'collapseModal');
+
+            $title = JText::_('COM_TZ_GUSETBOOK_BATCH');
+            //$batchIcon = '<i class="icon-checkbox-partial" title="' . $title . '"></i>';
+            //$batchClass = ' class="btn btn-small"';
+			if(!COM_TZ_GUESTBOOK_JVERSION_COMPARE){
+			$batchIcon = '<span class="tz-checkbox-partial" title="' . $title . '"></span>';
+			$batchClass = ' class="tz-batch"';
+			}else{
+			$batchIcon = '<i class="icon-checkbox-partial" title="' . $title . '"></i>';
+			$batchClass = ' class="btn btn-small"';
+			}
+            $dhtml = '<a' . $batchClass . ' href="#" data-toggle="modal" data-target="#collapseModal">';
+            $dhtml .= $batchIcon . $title . '</a>';
+
+            $bar->appendButton('Custom', $dhtml, 'batch');
+        }
         JHtmlSidebar::addFilter(
             JText::_('JOPTION_SELECT_PUBLISHED'),
             'filter_published',
@@ -91,16 +119,16 @@ class Tz_guestbookViewGuestbook extends JViewLegacy
         JHtmlSidebar::addFilter(
             JText::_('JOPTION_SELECT_CATEGORY'),
             'filter_category_id',
-            JHtml::_('select.options', JHtml::_('category.options','com_tz_guestbook'), 'value', 'text', $this->get('State')->get('cate'), true)
+            JHtml::_('select.options', JHtml::_('category.options', 'com_tz_guestbook'), 'value', 'text', $this->get('State')->get('cate'), true)
         );
     }
 
     function adde()
     {
-        JToolBarHelper::title(JText::_("COM_TZ_GUESTBOOK_CONTENT_GUESTBOOK"), 'article-add.png');
-        JToolBarHelper::preferences('com_tz_guestbook');
-        JToolBarHelper::cancel();
-        JToolBarHelper::help('JHELP_CONTENT_ARTICLE_MANAGER_EDIT');
+        JToolbarHelper::title(JText::_('COM_TZ_GUESTBOOK_CONTENT_GUESTBOOK'), 'article-add.png');
+        JToolbarHelper::preferences('com_tz_guestbook');
+        JToolbarHelper::cancel("guestbook.cancel");
+        JToolbarHelper::help('JHELP_CONTENT_ARTICLE_MANAGER_EDIT');
         $input = JFactory::getApplication()->input;
         $input->set('hidemainmenu', true);
     }
@@ -110,7 +138,7 @@ class Tz_guestbookViewGuestbook extends JViewLegacy
         return array(
             'tz.state' => JText::_('JSTATUS'),
             'tz.title' => JText::_('JGLOBAL_TITLE'),
-            'tz.category'=> JText::_('Category'),
+            'tz.category' => JText::_('Category'),
             'tz.author' => JText::_('JDATE'),
             'tz.public' => JText::_("Public"),
             'tz.email' => JText::_("Email"),

@@ -17,9 +17,8 @@
 
 -------------------------------------------------------------------------*/
 defined("_JEXEC") or die;
-
 if (isset($this->display) && !empty($this->display)) :
-    foreach ($this->display as $rr) :?>
+    foreach ($this->display as $rr) : ?>
         <div class="warp-comment">
             <div class="nnt-warp-comment-class">
                 <ul>
@@ -46,7 +45,7 @@ if (isset($this->display) && !empty($this->display)) :
                         </li>
                     <?php endif; ?>
 
-                    <?php if ($this->category == 1): ?>
+                    <?php if ($this->category == 1 && $rr->jtitle != null): ?>
                         <li class="nnt-warl-comment-li-1">
                             <span>
                                 <?php echo JText::_('COM_TZ_GUESTBOOK_CATEGORY'); ?>

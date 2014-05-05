@@ -17,6 +17,7 @@
 
 -------------------------------------------------------------------------*/
 defined("_JEXEC") or die;
+JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 ?>
 
 <div id="nnt_comment">
@@ -40,6 +41,7 @@ defined("_JEXEC") or die;
             ?>
         </span>
     </div>
+
     <div id="warp-fom">
         <h5 id="tz-guestbook-h5">
             <span> <?php echo JText::_("COM_TZ_GUESTBOOK_SING_GUESTBOOK"); ?></span>
@@ -55,19 +57,20 @@ defined("_JEXEC") or die;
                     <?php if (isset($this->auth->name) && $this->auth->name != ""): ?>
                         value="<?php echo $this->auth->name; ?>"
                     <?php else : ?>
-                        value="<?PHP echo JText::_("COM_TZ_GUESTBOOK_FULL_NAME"); ?>"
+                        value="<?php echo JText::_("COM_TZ_GUESTBOOK_FULL_NAME"); ?>"
                     <?php endif; ?>
                     />
 
                 <p class="tz_input_name" id="pname"></p>
             </div>
+
             <div class="warp-in">
                 <input id="warp-input2" class="conten-input" type="text" name="email"
                        maxlength="<?php echo $this->count_email; ?>"
                     <?php if (isset($this->auth->email) && $this->auth->email != "") : ?>
                         value="<?php echo $this->auth->email; ?>"
                     <?php else : ?>
-                        value="<?PHP echo JText::_("COM_TZ_GUESTBOOK_EMAIL"); ?>"
+                        value="<?php echo JText::_("COM_TZ_GUESTBOOK_EMAIL"); ?>"
                     <?php endif; ?>
                     />
 
@@ -79,7 +82,7 @@ defined("_JEXEC") or die;
                 <div class="warp-in">
                     <input id="warp-input3" class="conten-input" type="text" name="title"
                            maxlength="<?php echo $this->count_tit; ?>"
-                           value="<?PHP echo JText::_("COM_TZ_GUESTBOOK_TITLE"); ?>"/>
+                           value="<?php echo JText::_("COM_TZ_GUESTBOOK_TITLE"); ?>"/>
 
                     <p class="tz_input_title" id="ptitle"></p>
                 </div>
@@ -94,7 +97,7 @@ defined("_JEXEC") or die;
                 <div class="warp-in">
                     <input id="warp-input4" class="conten-input" type="text" name="website"
                            maxlength="<?php echo $this->count_web; ?>"
-                           value="<?PHP echo JText::_("COM_TZ_GUESTBOOK_WEBSITE"); ?>"/>
+                           value="<?php echo JText::_("COM_TZ_GUESTBOOK_WEBSITE"); ?>"/>
 
                     <p class="tz_input_website" id="p_website"></p>
                 </div>
@@ -136,7 +139,6 @@ defined("_JEXEC") or die;
                 <input id="warp-input-sub" type="button" name="send"
                        value="<?php echo JText::_("COM_TZ_GUESTBOOK_SEND_GUESTBOOK"); ?>"/>
             </div>
-
         </form>
     </div>
     <div class="clre"></div>

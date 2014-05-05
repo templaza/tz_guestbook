@@ -18,6 +18,7 @@
 -------------------------------------------------------------------------*/
 defined("_JEXEC") or die;
 jimport('joomla.application.component.view');
+
 class Tz_guestbookViewGuestbook extends JViewLegacy
 {
     protected $form;

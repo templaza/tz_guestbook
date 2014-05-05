@@ -5,7 +5,7 @@
 
 # ------------------------------------------------------------------------
 
-# author    TuNguyenTemPlaza
+# author    TuanNATemPlaza
 
 # copyright Copyright (C) 2012 templaza.com. All Rights Reserved.
 
@@ -17,20 +17,25 @@
 
 -------------------------------------------------------------------------*/
 defined('_JEXEC') or die;
-jimport('joomla.application.component.controlleradmin');
 
-class  Tz_guestbookControllerCategories extends JControllerAdmin
+
+class TZ_guestbookTableGuestbook extends JTable
 {
-    function  display($cachable = false, $urlparams = array())
-    {
-        $doc = JFactory::getDocument();
-        $type = $doc->getType();
-        $view = $this->getView('categories', $type);
-        $model = $this->getModel('categories');
-        $view->setModel($model, true);
-        $view->setLayout('default');
-        $view->display();
-    }
-}
+    var $id_cm = null;
+    var $name = null;
+    var $email = null;
+    var $catid = null;
+    var $title = null;
+    var $content = null;
+    var $public = null;
+    var $date = null;
+    var $status = null;
+    var $website = null;
+    var $id_us = null;
 
-?>
+    function __construct($db)
+    {
+        parent::__construct('#__comment', 'id_cm', $db);
+    }
+
+}

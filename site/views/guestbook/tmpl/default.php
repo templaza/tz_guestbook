@@ -407,6 +407,7 @@ jQuery(document).ready(function () {
     });
 });
 </script>
+
 <div id="TZGuestBook">
     <?php echo $this->loadTemplate('form'); ?>
     <div id="wrap-baiviet" class="transitions-enabled clearfix">

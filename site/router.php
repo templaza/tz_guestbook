@@ -17,13 +17,13 @@
 
 -------------------------------------------------------------------------*/
 defined('_JEXEC') or die;
-//var_dump(JPATH_SITE);die;
-require_once(JPATH_SITE . '/components/com_tz_guestbook/libra/categories.php');
-//require_once(JPATH_SITE.'/components/com_tz_guestbook/libra/categories.php');
+
+require_once(JPATH_SITE . '/components/com_tz_guestbook/libraries/categories.php');
 
 
 function TZ_GuestbookBuildRoute(&$query)
 {
+
     $segments = array();
 
     // get a menu item based on Itemid or currently active
@@ -31,7 +31,6 @@ function TZ_GuestbookBuildRoute(&$query)
     $menu = $app->getMenu();
     $params = JComponentHelper::getParams('com_tz_guestbook');
     $advanced = $params->get('sef_advanced_link', 0);
-
     // we need a menu item.  Either the one specified in the query, or the current active one if none specified
     if (empty($query['Itemid'])) {
         $menuItem = $menu->getActive();
@@ -53,66 +52,47 @@ function TZ_GuestbookBuildRoute(&$query)
         // we need to have a view in the query or it is an invalid URL
         return $segments;
     }
-
     // are we dealing with an article or category that is attached to a menu item?
     if (($menuItem instanceof stdClass) && $menuItem->query['view'] == $query['view'] && isset($query['id']) && $menuItem->query['id'] == (int)$query['id']) {
         unset($query['view']);
-
         unset($query['id']);
-
         return $segments;
     }
-    if ($view == 'guestbook') {
+    if ($view == 'guestbook' || $view == 'categories') {
         if (!$menuItemGiven) {
-            $segments[] = $view;
+            $segments[0] = $view;
         }
-
         unset($query['view']);
-
         if (isset($query['id'])) {
             $catid = $query['id'];
         } else {
             // we should have id set for this view.  If we don't, it is an error
             return $segments;
         }
-
         if ($menuItemGiven && isset($menuItem->query['id'])) {
             $mCatid = $menuItem->query['id'];
         } else {
             $mCatid = 0;
         }
-
-        $categories = Categories::getInstance('TZ_guestbook');
+        $categories = TZCategories::getInstance('TZ_guestbook');
         $category = $categories->get($catid);
-
         if (!$category) {
+
             // we couldn't find the category we were given.  Bail.
             return $segments;
         }
-
-        $path = array_reverse($category->getPath());
-
         $array = array();
 
-        foreach ($path as $id) {
-            if ((int)$id == (int)$mCatid) {
+        foreach ($category as $id) {
+            if ($id == $mCatid) {
+
                 break;
             }
-
-            list($tmp, $id) = explode(':', $id, 2);
-
-            $array[] = $id;
+            $array[] = $id->id;
+            $array[] = $id->alias;
+            $array = implode('-', $array);
         }
-
-        $array = array_reverse($array);
-
-        if (!$advanced && count($array)) {
-            $array[0] = (int)$catid . ':' . $array[0];
-        }
-
-        $segments = array_merge($segments, $array);
-
-
+        $segments[1] = $array;
         unset($query['id']);
     }
     return $segments;
@@ -150,15 +130,16 @@ function TZ_GuestbookParseRoute($segments)
     // then we assume it is a category.  If they don't we assume it is an article
     if ($count) {
         // we check to see if an alias is given.  If not, we assume it is an article
-        if (strpos($segments[0], ':') === false) {
+        if (strpos($segments[0], '-') === false) {
             $vars['view'] = 'guestbook';
             $vars['id'] = (int)$segments[0];
             return $vars;
         }
 
-        list($id, $alias) = explode(':', $segments[0], 2);
+        list($id, $alias) = explode('-', $segments[0], 2);
         // first we check if it is a category
-        $category = Categories::getInstance('TZ_guestbook')->get($id);
+        $category = TZCategories::getInstance('TZ_guestbook')->get($id);
+
         if ($category && $category->alias == $alias) {
             $vars['view'] = 'guestbook';
             $vars['id'] = $id;
@@ -193,58 +174,6 @@ function TZ_GuestbookParseRoute($segments)
     }
 
     // we get the category id from the menu item and search from there
-    $id = $item->query['id'];
-    $category = Categories::getInstance('TZ_guestbook')->get($id);
-
-    if (!$category) {
-        JError::raiseError(404, JText::_('COM_CONTENT_ERROR_PARENT_CATEGORY_NOT_FOUND'));
-        return $vars;
-    }
-    $categories = $category->getChildren();
-    $vars['id'] = $id;
-    $found = 0;
-
-    foreach ($segments as $segment) {
-        $segment = str_replace(':', '-', $segment);
-
-        foreach ($categories as $category) {
-            if ($category->alias == $segment) {
-                $vars['id'] = $category->id;
-                $vars['catid'] = $category->id;
-                $vars['view'] = 'category';
-                $categories = $category->getChildren();
-                $found = 1;
-                break;
-            }
-        }
-
-        if ($found == 0) {
-            if ($advanced) {
-                $db = JFactory::getDbo();
-                $query = $db->getQuery(true)
-                    ->select($db->quoteName('id'))
-                    ->from('#__content')
-                    ->where($db->quoteName('catid') . ' = ' . (int)$vars['catid'])
-                    ->where($db->quoteName('alias') . ' = ' . $db->quote($db->quote($segment)));
-                $db->setQuery($query);
-                $cid = $db->loadResult();
-            } else {
-                $cid = $segment;
-            }
-
-            $vars['id'] = $cid;
-
-            if ($item->query['view'] == 'archive' && $count != 1) {
-                $vars['year'] = $count >= 2 ? $segments[$count - 2] : null;
-                $vars['month'] = $segments[$count - 1];
-                $vars['view'] = 'archive';
-            } else {
-                $vars['view'] = 'article';
-            }
-        }
-
-        $found = 0;
-    }
 
     return $vars;
 }

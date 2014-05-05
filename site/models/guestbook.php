@@ -34,8 +34,8 @@ class Tz_guestbookModelGuestbook extends JModelForm
         $congiajax = $params->get('congiajax');
         $limit_row = $params->get('rows_ts');
         $remove_text = $params->get('removeText');
-        $limit_start = JRequest::getCmd('limitstart');        
-		$id = JRequest::getVar('id');
+        $limit_start = JRequest::getCmd('limitstart');
+        $id = JRequest::getVar('id');
         $this->setState('conf', $congiajax);
         $this->setState('showcap', $showcapcha);
         $this->setState('c_status', $h_status);
@@ -114,7 +114,10 @@ class Tz_guestbookModelGuestbook extends JModelForm
         }
         if (isset($name) && !empty($name) && isset($email) && !empty($email) && isset($content) && !empty($content) && $category != 0) {
             $db = JFactory::getDbo();
-            $sql = 'INSERT INTO #__comment values(null,"' . $name . '","' . $email . '","' . $category . '","' . $title . '","' . $content . '",
+            $sql = 'INSERT INTO #__comment
+			 (`id_cm`, `name`, `email`, `catid`, `title`, `content`, `public`, `date`, `status`, `website`, `id_us`)
+			values
+			(null,"' . $name . '","' . $email . '","' . $category . '","' . $title . '","' . $content . '",
                         "' . $publich . '","' . $date . '","' . $status . '","' . $website . '","' . $id . '")';
             $db->setQuery($sql);
             $num_row = $db->query();
@@ -131,6 +134,7 @@ class Tz_guestbookModelGuestbook extends JModelForm
     {
         $chooseCate = $this->getState('chooseCate');
         if ($chooseCate == '') {
+
             $where1 = '';
         } else {
             if (is_numeric($chooseCate)) {
@@ -153,11 +157,11 @@ class Tz_guestbookModelGuestbook extends JModelForm
         $db = JFactory::getDbo();
         $sql = "SELECT c.name AS cname,  c.email AS cemail,  c.title AS ctitle, c.content AS ccontent,  c.public AS cpublic, j.lft as lft,j.rgt as rgt,
                               c.date AS cdate, c.status AS cstatus, u.name AS uname, c.website as cwebsite , j.title as jtitle
-                        FROM #__users AS u RIGHT JOIN #__comment AS c ON c.id_us  = u.id RIGHT  JOIN #__categories AS j ON c.catid = j.id
+                        FROM #__users AS u RIGHT JOIN #__comment AS c ON c.id_us  = u.id LEFT  JOIN #__categories AS j ON c.catid = j.id
                         where c.status =1 $where1  order  by c.date desc";
         $sql2 = "SELECT c.name AS cname,  c.email AS cemail,  c.title AS ctitle, c.content AS ccontent,  c.public AS cpublic, j.lft as lft,j.rgt as rgt,
                               c.date AS cdate, c.status AS cstatus, u.name AS uname, c.website as cwebsite , j.title as jtitle
-                        FROM #__users AS u RIGHT JOIN #__comment AS c ON c.id_us  = u.id RIGHT  JOIN #__categories AS j ON c.catid = j.id
+                        FROM #__users AS u RIGHT JOIN #__comment AS c ON c.id_us  = u.id LEFT  JOIN #__categories AS j ON c.catid = j.id
                         where c.status =1 $where1 order  by c.date desc ";
         $db->setQuery($sql);
         $number = $db->query();
@@ -170,6 +174,7 @@ class Tz_guestbookModelGuestbook extends JModelForm
         }
 
         $row = $db->loadObjectList();
+
         return $row;
     }
 
@@ -180,9 +185,11 @@ class Tz_guestbookModelGuestbook extends JModelForm
     {
 
         $db = JFactory::getDbo();
+        $sql_cate = "SELECT * FROM #__categories where extension ='com_tz_guestbook'";
+        $db->setQuery($sql_cate);
         $sql = "SELECT c.name AS cname,  c.email AS cemail,  c.title AS ctitle, c.content AS ccontent,  c.public AS cpublic, c.catid AS catid,
-                            c.date AS cdate, c.status AS cstatus, u.name AS uname, c.website as cwebsite, j.title as jtitle
-                    FROM #__users AS u RIGHT JOIN #__comment AS c ON c.id_us  = u.id RIGHT  JOIN #__categories AS j ON c.catid = j.id
+                            c.date AS cdate, c.status AS cstatus, u.name AS uname, c.website as cwebsite ,j.title as jtitle
+                    FROM #__users AS u RIGHT JOIN #__comment AS c ON c.id_us  = u.id LEFT  JOIN #__categories AS j ON c.catid = j.id
                     where c.status =1 order  by c.date desc limit 0,1";
         $db->setQuery($sql);
         $row = $db->loadObjectList();
@@ -349,29 +356,29 @@ class Tz_guestbookModelGuestbook extends JModelForm
             $message = $getId->content;
             $email = $getId->email;
             $author = $getId->name;
-			$category = $getId->title;            
+            $category = $getId->title;
             $value = array();
             $value[0] = $title;
             $value[1] = $message;
             $value[2] = $website;
             $value[3] = $author;
-            $value[4] = $email;            
-			$value[5] = $category;
+            $value[4] = $email;
+            $value[5] = $category;
             $filter_title = '/\{\$title\}/';
             $filter_message = '/\{\$message\}/';
             $filter_website = '/\{\$website\}/';
             $filter_author = '/\{\$author\}/';
-            $filter_email = '/\{\$email\}/';            
-			$filter_category = '/\{\$category\}/';
+            $filter_email = '/\{\$email\}/';
+            $filter_category = '/\{\$category\}/';
             $filter = array();
             $filter[0] = $filter_title;
             $filter[1] = $filter_message;
             $filter[2] = $filter_website;
             $filter[3] = $filter_author;
-            $filter[4] = $filter_email;            
-			$filter[5] = $filter_category;
+            $filter[4] = $filter_email;
+            $filter[5] = $filter_category;
 
-            if (preg_match($filter_title, $str) or preg_match($filter_message, $str) or preg_match($filter_website, $str) or preg_match($filter_author, $str) or preg_match($filter_email, $str) or preg_match($filter_category, $str) ) {
+            if (preg_match($filter_title, $str) or preg_match($filter_message, $str) or preg_match($filter_website, $str) or preg_match($filter_author, $str) or preg_match($filter_email, $str) or preg_match($filter_category, $str)) {
                 $str = preg_replace($filter, $value, $str);
             }
 

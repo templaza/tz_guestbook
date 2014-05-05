@@ -64,7 +64,22 @@ class com_tz_guestbookInstallerScript{
 
         $db -> setQuery($query);
         $db -> query();
-
+		
+		$fields2 = $db -> getTableColumns('#__comment');
+        $arr2   = null;
+        if(!array_key_exists('catid',$fields2)){
+            $arr2[]  = 'ADD `catid` INT NOT NULL';
+        }
+        if($arr2 && count($arr2)>0){
+            $arr2    = implode(',',$arr2);
+            if($arr2){
+                $query  = 'ALTER TABLE `#__comment` '.$arr2;
+                $db -> setQuery($query);
+                $db -> query();
+            }
+        }
+		
+		
         //Install plugins
         $status = new stdClass;
         $status->modules = array();

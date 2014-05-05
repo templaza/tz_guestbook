@@ -6656,3 +6656,6 @@ form label, form span.faux-label{font-size: 12px;}
 #item-form fieldset button{
     float: none;
 }
+.tz-checkbox-partial{
+	background: url("image/icon-32-batch.png") no-repeat;
+}

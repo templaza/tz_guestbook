@@ -5,7 +5,7 @@
 
 # ------------------------------------------------------------------------
 
-# author    TuNguyenTemPlaza
+# author    TuanNATemPlaza
 
 # copyright Copyright (C) 2012 templaza.com. All Rights Reserved.
 
@@ -20,114 +20,49 @@
 defined("_JEXEC") or die;
 
 
-jimport('joomla.application.component.model');
-require_once(JPATH_COMPONENT . '/libra/categories.php');
+jimport('joomla.application.component.modellist');
 /**
  * This models supports retrieving lists of article categories.
  */
 class TZ_guestbookModelCategories extends JModelList
 {
-    /**
-     * Model context string.
-     *
-     * @var        string
-     */
-    public $_context = 'com_tz_guestbook.categories';
 
-    /**
-     * The category context (allows other extensions to derived from this model).
-     *
-     * @var        string
-     */
-    protected $_extension = 'com_tz_guestbook';
-
-    private $_parent = null;
-
-    private $_items = null;
-
-    /**
-     * Method to auto-populate the model state.
-     *
-     * Note. Calling getState in this method will result in recursion.
-     *
-     * @since    1.6
-     */
     protected function populateState()
     {
-        $app = JFactory::getApplication();
-        $this->setState('filter.extension', $this->_extension);
-
-        // Get the parent id if defined.
-        $parentId = JRequest::getInt('id');
-        $this->setState('filter.parentId', $parentId);
-
-        $params = $app->getParams();
-//        $params = JComponentHelper::getParams('com_content');
-        $this->setState('params', $params);
-
-        $this->setState('filter.published', 1);
-        $this->setState('filter.access', true);
+        $app = JFactory::getApplication('site');
+        $param = $app->getParams();
+       // $id = JRequest::getVar('id');
+   $id1 = $param->get('id');
+        $this->setState('id', $id1);
+        $this->setState('params', $param);
     }
 
-    /**
-     * Method to get a store id based on model configuration state.
-     *
-     * This is necessary because the model is used by the component and
-     * different modules that might need different sets of data or different
-     * ordering requirements.
-     *
-     * @param    string $id A prefix for the store id.
-     *
-     * @return    string        A store id.
-     */
-    protected function getStoreId($id = '')
+    public function getItems()
     {
-        // Compile the store id.
-        $id .= ':' . $this->getState('filter.extension');
-        $id .= ':' . $this->getState('filter.published');
-        $id .= ':' . $this->getState('filter.access');
-        $id .= ':' . $this->getState('filter.parentId');
+		$a = $this->getState('id');
+        
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select('c.*');
+        $query->select('count(a.id_cm) as numitems');
+        $query->from('#__categories as c');
+        $query->join('left', '#__comment as a on c.id = a.catid ');
+        $query->where("c.extension = 'com_tz_guestbook' and c.published = 1 ");
 
-        return parent::getStoreId($id);
-    }
-
-    /**
-     * Redefine the function an add some properties to make the styling more easy
-     *
-     * @param    bool $recursive True if you want to return children recursively.
-     *
-     * @return    mixed    An array of data items on success, false on failure.
-     * @since    1.6
-     */
-    public function getItems($recursive = false)
-    {
-        if (!count($this->_items)) {
-            $app = JFactory::getApplication();
-            $menu = $app->getMenu();
-            $active = $menu->getActive();
-            $params = new JRegistry();
-            if ($active) {
-                $params->loadString($active->params);
-            }
-            $options = array();
-            $options['countItems'] = $params->get('show_cat_num_articles_cat', 1) || !$params->get('show_empty_categories_cat', 0);
-            $categories = Categories::getInstance('TZ_guestbook', $options);
-            $this->_parent = $categories->get($this->getState('filter.parentId', 'root'));
-            if (is_object($this->_parent)) {
-                $this->_items = $this->_parent->getChildren($recursive);
-            } else {
-                $this->_items = false;
-            }
+        if ($a[0] == null) {
+            $where = '';
+        } else {
+            $id = array_filter($a);
+            $arr = implode(",", $id);
+            $where = "c.id IN (" . $arr . ")";
+            $query->where($where);
         }
-        return $this->_items;
+        $query->group('c.id');
+        $db->setQuery($query);
+
+        return $db->loadObjectList();
+
     }
 
-    public function getParent()
-    {
-        if (!is_object($this->_parent)) {
-            $this->getItems();
-        }
 
-        return $this->_parent;
-    }
 }
