@@ -217,7 +217,13 @@
             <option value="0">JHIDE</option>
             <option value="1">JSHOW</option>
         </field>
+		<field name="show_count_items" type="list"
+               label="COM_TZ_GUESTBOOK_NUMBER_GUESTBOOK_LABEL"
+               description="COM_TZ_GUESTBOOK_NUMBER_GUESTBOOK_DESC">
 
+            <option value="0">JHIDE</option>
+            <option value="1">JSHOW</option>
+        </field>
         <field name="show_image_cat" type="list"
                default="0"
                label="COM_TZ_GUESTBOOK_NUMBER_CATEGORY_ITEMS_LABEL"

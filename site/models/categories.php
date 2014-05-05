@@ -39,15 +39,15 @@ class TZ_guestbookModelCategories extends JModelList
 
     public function getItems()
     {
-
-        $a = $this->getState('id');
+		$a = $this->getState('id');
+        
         $db = JFactory::getDbo();
         $query = $db->getQuery(true);
-        $query->select('c.*' );
-
+        $query->select('c.*');
+        $query->select('count(a.id_cm) as numitems');
         $query->from('#__categories as c');
-
-        $query->where("c.extension = 'com_tz_guestbook' and c.published = 1");
+        $query->join('left', '#__comment as a on c.id = a.catid ');
+        $query->where("c.extension = 'com_tz_guestbook' and c.published = 1 ");
 
         if ($a[0] == null) {
             $where = '';
@@ -57,6 +57,7 @@ class TZ_guestbookModelCategories extends JModelList
             $where = "c.id IN (" . $arr . ")";
             $query->where($where);
         }
+        $query->group('c.id');
         $db->setQuery($query);
 
         return $db->loadObjectList();

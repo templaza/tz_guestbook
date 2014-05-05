@@ -23,6 +23,8 @@ $view = JRequest::getCmd('view', 'guestbook');
 $controllerName = $view;
 $task = JRequest::getVar('send');
 $controlletPath = JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'controllers' . DIRECTORY_SEPARATOR . $controllerName . '.php';
+$doc = JFactory::getDocument();
+$doc->addStyleSheet(JUri::root().'components/com_tz_guestbook/css/baiviet2.css');
 if (file_exists($controlletPath)) {
     require_once($controlletPath);
 } else {

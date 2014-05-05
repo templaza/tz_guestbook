@@ -17,9 +17,11 @@
     position: relative;
 
 }
-.warp-comment.masonry-brick{
-	overflow:hidden;
+
+.warp-comment.masonry-brick {
+    overflow: hidden;
 }
+
 #nnt_comment_a1 {
     font-size: 12px;
     width: 140px;
@@ -194,6 +196,7 @@ main #nnt_comment_a1:link,
     margin-left: 20px;
 
 }
+
 #nnt-comment-label-capchat {
     width: 20%;
     height: 50px;
@@ -554,6 +557,37 @@ main #nnt_comment_a1:link,
     cursor: pointer;
 }
 
+.tz-item-title {
+    color: #3F3F3F;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 40px;
+}
+
+.tz-item-title .tz-title:hover,
+.tz-item-title .tz-title:focus,
+.tz-item-title .tz-title:active {
+    text-decoration: none;
+    color: #0000ff;
+}
+
+.tz-gird {
+    background-color: rgba(0, 0, 0, 0);
+    margin: 0 0 37px;
+    text-align: center;
+    width: auto;
+    border: 1px solid #E1E5E7;
+    padding: 25px;
+}
+
+.tz-gird:hover {
+    border-color: #0000ff;
+}
+
+.tz-title {
+    color: #3F3F3F;
+}
+
 /**** Transitions ****/
 
 .transitions-enabled.masonry,
@@ -587,6 +621,8 @@ main #nnt_comment_a1:link,
 }
 
 /**** Primer comparison ****/
+
+
 
 
 

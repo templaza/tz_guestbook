@@ -29,7 +29,7 @@ require_once(JPATH_COMPONENT . '/helpers/route.php');
 ?>
 
 <div class="TzCategories categories-list<?php echo $this->pageclass_sfx; ?>">
-    <?php if ($this->params->get('show_page_heading')) : ?>
+     <?php if ($this->params->get('show_page_heading')) : ?>
         <h1>
             <?php echo $this->escape($this->params->get('page_heading')); ?>
         </h1>
@@ -41,31 +41,38 @@ require_once(JPATH_COMPONENT . '/helpers/route.php');
             $params = new JRegistry($item->params);
             ?>
             <?php if (($id) == 0 or $a == 1): ?>
-                <div class="row-fluid">
+                <div class="row-fluid tz-categories">
             <?php endif; ?>
 
-            <div class="span6">
-                <h3 class="page-header item-title">
-                    <a href="<?php echo JRoute::_(TZ_guestbookHelperRoute::getCategoryRoute($item->id)); ?>">
-                        <?php echo $this->escape($item->title); ?>
-                    </a>
-                </h3>
-                <?php if ($this->params->get('show_image_cat') == 1): ?>
-                    <?php if ($params->get('image')): ?>
-                        <div class="image_cat">
-                            <img src="<?php echo $params->get('image'); ?>">
+            <div class="span6 tz-category">
+                <div class="tz-gird">
+                    <h3 class="tz-page-header tz-item-title">
+                        <a class="tz-title" href="<?php echo JRoute::_(TZ_guestbookHelperRoute::getCategoryRoute($item->id)); ?>">
+                            <?php echo $this->escape($item->title); ?>
+                        </a>
+                    </h3>
+                    <?php if ($this->params->get('show_image_cat') == 1): ?>
+                        <?php if ($params->get('image')): ?>
+                            <div class="tz-image-cat">
+                                <img src="<?php echo $params->get('image'); ?>">
+                            </div>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                    <?php if ($this->params->get('show_count_items', 1)): ?>
+                        <div class="tz-count-item">
+                            <?php echo JText::sprintf('COM_TZ_GUESTBOOK_COUNT_ITEM', $item->numitems) ?>
                         </div>
                     <?php endif; ?>
-                <?php endif; ?>
-                <?php if ($this->params->get('show_subcat_desc_cat') == 1) : ?>
-                    <?php if ($item->description) : ?>
-                        <div class="category-desc">
-                            <?php echo JHtml::_('content.prepare', $item->description, '', 'com_tz_guestbook.categories'); ?>
-                        </div>
+                    <?php if ($this->params->get('show_subcat_desc_cat') == 1) : ?>
+                        <?php if ($item->description) : ?>
+                            <div class="tz-category-desc">
+                                <?php echo JHtml::_('content.prepare', $item->description, '', 'com_tz_guestbook.categories'); ?>
+                            </div>
+                        <?php endif; ?>
                     <?php endif; ?>
-                <?php endif; ?>
+                </div>
             </div>
-            <?php if (($id + 1) == 0 or  $a == 0): ?>
+            <?php if (($id + 1) == 0 or $a == 0): ?>
                 </div>
             <?php endif; ?>
         <?php endforeach; ?>
