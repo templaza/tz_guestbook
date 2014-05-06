@@ -65,7 +65,7 @@ class Tz_guestbookViewGuestbook extends JViewLegacy
         $this->assign('auth', $this->get('Author2'));
         $this->assign('pagination', $this->get('Pagination'));
         $this->assign('listcate', $this->get('Category'));
-        $this->assign('catid',$state->get('id'));
+        $this->assign('catid',JRequest::getVar('id'));
         parent::display($tpl);
     }
 }
