@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="2.5" method="upgrade">
     <name>com_tz_guestbook</name>
-    	<author>Tuan Nguyen</author>
+    	<author>TuanNguyen</author>
     	<creationDate>November 2012</creationDate>
     	<copyright>(Copyright (C) 2012 TemPlaza. All rights reserved.</copyright>
     	<license>GNU/GPL v2 or later http://www.gnu.org/licenses/gpl-2.0.html</license>
     	<authorEmail>support@templaza.com</authorEmail>
     	<authorUrl>www.templaza.com</authorUrl>
-    	<version>3.2.0</version>
+    	<version>3.2.1</version>
     	<description>Tz Guestbook help you write guestbook</description>
         <scriptfile>script.php</scriptfile>
              <install>
@@ -39,6 +39,7 @@
 			<language tag="tr-TR">language/tr-TR/tr-TR.com_tz_guestbook.ini</language>
 			<language tag="fi-FI">language/fi-FI/fi-FI.com_tz_guestbook.ini</language>
 			<language tag="ru-RU">language/ru-RU/ru-RU.com_tz_guestbook.ini</language>
+			<language tag="nl-NL">language/nl-NL/nl-NL.com_tz_guestbook.ini</language>
     	</languages>
     	<administration>
             <languages folder="admin">
@@ -49,7 +50,9 @@
 				<language tag="fi-FI">language/fi-FI/fi-FI.com_tz_guestbook.ini</language>
                 <language tag="fi-FI">language/fi-FI/fi-FI.com_tz_guestbook.sys.ini</language>
 				<language tag="ru-RU">language/ru-RU/ru-RU.com_tz_guestbook.ini</language>
-                <language tag="ru-RU">language/ru-RU/ru-RU.com_tz_guestbook.sys.ini</language>
+                <language tag="ru-RU">language/ru-RU/ru-RU.com_tz_guestbook.sys.ini</language>				
+				<language tag="nl-NL">language/nl-NL/nl-NL.com_tz_guestbook.ini</language>
+                <language tag="nl-NL">language/nl-NL/nl-NL.com_tz_guestbook.sys.ini</language>
              </languages>
     		<files folder="admin">
                 <folder>controllers</folder>
