@@ -20,7 +20,7 @@
 JHtml::addIncludePath(JPATH_COMPONENT . '/libraries');
 abstract class TZ_guestbookHelperRoute
 {
-    protected static $lookup = array();
+    protected static $lookup = null;
 
     protected static $lang_lookup = array();
 
@@ -38,7 +38,8 @@ abstract class TZ_guestbookHelperRoute
             }
         }
 
-        if ($item = self::_findItem($needles)) {
+        if ($item = self::_findItem($catid)) {
+
             $link .= '&Itemid=' . $item;
         }
 
@@ -63,45 +64,30 @@ abstract class TZ_guestbookHelperRoute
         }
     }
 
-    protected static function _findItem($needles = null)
+    protected static function _findItem($catid = null)
     {
         $app = JFactory::getApplication();
         $menus = $app->getMenu('site');
-        // Prepare the reverse lookup array.
-        if (self::$lookup === null) {
-            self::$lookup = array();
             $component = JComponentHelper::getComponent('com_tz_guestbook');
             $attributes = array('component_id');
             $values = array($component->id);
             $items = $menus->getItems($attributes, $values);
-            foreach ($items as $item) {
-                if (isset($item->query) && isset($item->query['view'])) {
-                    $view = $item->query['view'];
-                    if (!isset(self::$lookup[$view])) {
-                        self::$lookup[$view] = array();
-                    }
-                    if (isset($item->query['id'])) {
-                        if (!isset(self::$lookup[$view][$item->query['id']])) {
-                            self::$lookup[$view][$item->query['id']] = $item->id;
+            if(count($items)){
+                foreach ($items as $item) {
+                    if (isset($item->query) && isset($item->query['view'])) {
+                        if (isset($item->query['id'])) {
+                                if($catid == $item -> query['id']){
+                                    return $item->id;
+                                }
                         }
                     }
                 }
             }
-        }
-        if ($needles) {
-            foreach ($needles as $view => $ids) {
-                if (isset(self::$lookup[$view])) {
-                    foreach ($ids as $id) {
-                        if (isset(self::$lookup[$view][(int)$id])) {
-                            return self::$lookup[$view][(int)$id];
-                        }
-                    }
-                }
-            }
-        }
+
         // Check if the active menuitem matches the requested language
         $active = $menus->getActive();
         if ($active && $active->component == 'com_tz_guestbook') {
+
             return $active->id;
         }
         // If not found, return language specific home link

@@ -60,7 +60,7 @@ function TZ_GuestbookBuildRoute(&$query)
     }
     if ($view == 'guestbook' || $view == 'categories') {
         if (!$menuItemGiven) {
-            $segments[0] = $view;
+            $segments[] = $view;
         }
         unset($query['view']);
         if (isset($query['id'])) {
@@ -92,7 +92,7 @@ function TZ_GuestbookBuildRoute(&$query)
             $array[] = $id->alias;
             $array = implode('-', $array);
         }
-        $segments[1] = $array;
+        $segments[] = $array;
         unset($query['id']);
     }
     return $segments;

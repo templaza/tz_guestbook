@@ -434,7 +434,7 @@ jQuery(document).ready(function () {
         </div>
 
         <div id="loadaj" style="display: none;">
-            <a href="<?php echo JURI::root() . 'index.php?option=com_tz_guestbook&view=guestbook&task=add.ajax&page=2&Itemid=' . JRequest::getInt('Itemid'); ?>">
+            <a href="<?php echo JURI::root() . 'index.php?option=com_tz_guestbook&view=guestbook&task=add.ajax&page=2&id=' . JRequest::getVar('id') . '&Itemid=' . JRequest::getInt('Itemid'); ?>">
             </a>
         </div>
 

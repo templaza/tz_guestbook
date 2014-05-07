@@ -88,8 +88,15 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
                 </div>
             <?php endif; ?>
             <div class="warp-in">
-                <?php echo $this->form->getInput('mycategory'); ?>
-
+                 <select class="tz_category" id="jform_mycategory">
+                    <option value=""><?php echo JText::_('COM_TZ_GUESTBOOK_CATEGORY_NONE'); ?></option>
+                    <?php foreach ($this->listcate as $cate): ?>
+                        <option<?php echo ((int)$cate->id == (int)$this->catid) ? ' selected="selected"' : '' ?>
+                            value="<?php echo $cate->id; ?>">
+                            <?php echo $cate->title; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
                 <p class="tz_input_category" id="s_category"></p>
             </div>
 

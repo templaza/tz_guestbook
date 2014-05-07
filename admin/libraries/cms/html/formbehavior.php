@@ -43,8 +43,8 @@ abstract class JHtmlFormbehavior
 			return;
 		}
 
-        if(!COM_TZ_PORTFOLIO_JVERSION_COMPARE){
-            JFactory::getLanguage() ->load('com_tz_portfolio');
+        if(!COM_TZ_GUESTBOOK_JVERSION_COMPARE){
+            JFactory::getLanguage() ->load('com_tz_guestbook');
         }
 
 		// Include jQuery

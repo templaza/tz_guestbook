@@ -294,6 +294,7 @@ class Tz_guestbookModelGuestbook extends JModelForm
         $view->assign('nam', $name);
         $view->assign('tit', $option);
         $view->assign('category', $cate);
+		$this->setState('chooseCate', JRequest::getVar('id'));
         $view->assign('display', $this->getList());
         return ($view->loadTemplate('item'));
     }
