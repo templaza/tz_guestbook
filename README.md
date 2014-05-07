@@ -12,14 +12,15 @@ If you love TZ Guestbook, please help us review and vote for it on JED: http://e
 
 04/7/2014 - 3.2.1
 
-	Fix error not show CAPTCHA.
-	Fix error for view list all categories and router.
+	Fix error does not show CAPTCHA.
+	Fix error for view list all categories and router.	
 	Netherlands language will be updated.	
+	Fix load error Guest by ajax.
+	Re-style view list for all categories.
 
 04/17/2014 - 3.2.0
 
-	Add new view List all categories and router.
-	
+	Add new view List all categories and router.	
 	
 04/11/2014 - 3.1.2
 	
