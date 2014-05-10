@@ -20,10 +20,12 @@
 defined("_JEXEC") or die;
 $document = JFactory::getDocument();
 $document->addStyleSheet('components/com_tz_guestbook/css/baiviet2.css');
-$document->addScript('components/com_tz_guestbook/js/jquery-1.8.2.min.js');
+$p  = $this->params;
+if($p->get('loadjQuery',1)){
+    $document->addScript('components/com_tz_guestbook/js/jquery-1.8.2.min.js');
+}
 $document->addCustomTag('<script type="text/javascript" src="components/com_tz_guestbook/js/jquery.masonry.min.js"></script>');
 $document->addCustomTag('<script type="text/javascript" src="components/com_tz_guestbook/js/jquery.infinitescroll.min.js"></script>');
-
 ?>
 
 
@@ -70,9 +72,11 @@ jQuery(document).ready(function () {
     // -------------------------------------------------------------
     // check full name
     jQuery('#warp-input1').focus(function () {
-        var inpName = jQuery('#warp-input1').attr('value');
-        if (inpName == "Full name") {
-            jQuery('#warp-input1').attr('value', '');
+
+        var inpName = jQuery('#warp-input1').val();
+
+        if (inpName == "Full name" || inpName == "") {
+            jQuery('#warp-input1').val('');
         }
         if (inpName != "") {
             jQuery('#warp-input1').keyup(function () {
@@ -92,7 +96,7 @@ jQuery(document).ready(function () {
     });
 
     jQuery('#warp-input1').blur(function () {
-        var inpName = jQuery('#warp-input1').attr('value');
+        var inpName = jQuery('#warp-input1').val();
         jQuery(".tz_input_name").css("display", "none");
         if (inpName == "") {
             document.getElementById("warp-input1").value = "Full name";
@@ -101,9 +105,9 @@ jQuery(document).ready(function () {
 
     // check email
     jQuery('#warp-input2').focus(function () {
-        var inpEmail = jQuery('#warp-input2').attr('value');
-        if (inpEmail == "Email") {
-            jQuery('#warp-input2').attr('value', '');
+        var inpEmail = jQuery('#warp-input2').val();
+        if (inpEmail == "Email" || inpEmail == "") {
+            jQuery('#warp-input2').val('');
         }
         if (inpEmail != "") {
             jQuery('#warp-input2').keyup(function () {
@@ -123,7 +127,9 @@ jQuery(document).ready(function () {
     });
 
     jQuery('#warp-input2').blur(function () {
-        var inpName = jQuery('#warp-input2').attr('value');
+
+        var inpName = jQuery('#warp-input2').val();
+
         jQuery(".tz_input_email").css("display", "none");
         if (inpName == "") {
             document.getElementById("warp-input2").value = "Email";
@@ -132,9 +138,9 @@ jQuery(document).ready(function () {
 
     // check title
     jQuery('#warp-input3').focus(function () {
-        var inpTitle = jQuery('#warp-input3').attr('value');
-        if (inpTitle == "Title") {
-            jQuery('#warp-input3').attr('value', '');
+        var inpTitle = jQuery('#warp-input3').val();
+        if (inpTitle == "Title" || inpTitle == "") {
+            jQuery('#warp-input3').val('');
         }
         if (inpTitle != "") {
             jQuery('#warp-input3').keyup(function () {
@@ -154,7 +160,7 @@ jQuery(document).ready(function () {
     });
 
     jQuery('#warp-input3').blur(function () {
-        var inpTitle = jQuery('#warp-input3').attr('value');
+        var inpTitle = jQuery('#warp-input3').val();
         jQuery(".tz_input_title").css("display", "none");
         if (inpTitle == "") {
             document.getElementById("warp-input3").value = "Title";
@@ -163,9 +169,9 @@ jQuery(document).ready(function () {
 
     // end website
     jQuery('#warp-input4').focus(function () {
-        var inpWeb = jQuery('#warp-input4').attr('value');
-        if (inpWeb == "Your website") {
-            jQuery('#warp-input4').attr('value', '');
+        var inpWeb = jQuery('#warp-input4').val();
+        if (inpWeb == "Your website" || inpWeb == "") {
+            jQuery('#warp-input4').val('');
         }
         if (inpWeb != "") {
             jQuery('#warp-input4').keyup(function () {
@@ -184,7 +190,7 @@ jQuery(document).ready(function () {
         }
     });
     jQuery('#warp-input4').blur(function () {
-        var inpWeb = jQuery('#warp-input4').attr('value');
+        var inpWeb = jQuery('#warp-input4').val();
         jQuery(".tz_input_website").css("display", "none");
         if (inpWeb == "") {
             document.getElementById("warp-input4").value = "Your website";
@@ -193,14 +199,14 @@ jQuery(document).ready(function () {
 
     // check comment
     jQuery('#text-ra').focus(function () {
-        var inpWeb = jQuery('#text-ra').attr('value');
-        if (inpWeb == "Your guestbook...") {
-            jQuery('#text-ra').attr('value', '');
+        var inpWeb = jQuery('#text-ra').val();
+        if (inpWeb == "Your guestbook..." || inpWeb == "") {
+            jQuery('#text-ra').val('');
         }
         if (inpWeb != "") {
             jQuery('#text-ra').keyup(function () {
                 var maxWeb = <?php echo $this->count_comm; ?>;
-                var inpWeb = jQuery('#text-ra').attr('value')
+                var inpWeb = jQuery('#text-ra').val();
                 jQuery(".tz_input_comment").css("display", "block");
                 var ppweb = document.getElementById("p_nntconten");
                 var countTen = inpWeb.length;
@@ -215,7 +221,7 @@ jQuery(document).ready(function () {
     });
 
     jQuery('#text-ra').blur(function () {
-        var inpWeb = jQuery('#text-ra').attr('value');
+        var inpWeb = jQuery('#text-ra').val();
         jQuery(".tz_input_comment").css("display", "none");
         if (inpWeb == "") {
             document.getElementById("text-ra").value = "Your guestbook...";
@@ -232,27 +238,27 @@ jQuery(document).ready(function () {
     //-----------------------------------------------------------------------------------------//
 
     jQuery('#warp-input-sub').click(function () {
-        var subname = jQuery('#warp-input1').attr('value');
+        var subname = jQuery('#warp-input1').val();
         var erroname = jQuery('#warp-input1');
         var pp = document.getElementById("pname");
 
-        var subemail = jQuery('#warp-input2').attr('value');
+        var subemail = jQuery('#warp-input2').val();
         var erroemail = jQuery('#warp-input2');
         var ppemail = document.getElementById("pemail");
 
-        var subtitle = jQuery('#warp-input3').attr('value');
+        var subtitle = jQuery('#warp-input3').val();
         var errotitle = jQuery('#warp-input3');
         var ptitle = document.getElementById("ptitle");
 
-        var subcontent = jQuery('#text-ra').attr('value');
+        var subcontent = jQuery('#text-ra').val();
         var errocontent = jQuery('#text-ra');
         var p_nntconten = document.getElementById("p_nntconten");
 
-        var websi = jQuery('#warp-input4').attr('value');
+        var websi = jQuery('#warp-input4').val();
         var loiwebsite = jQuery('#warp-input4');
         var p_website = document.getElementById("p_website");
 
-        var scate = jQuery('#jform_mycategory').attr('value');
+        var scate = jQuery('#jform_mycategory').val();
         var l_cate = jQuery('#jform_mycategory');
         var p_cate = document.getElementById("s_category");
 
@@ -326,27 +332,36 @@ jQuery(document).ready(function () {
         if (data_input.attr('checked')) {
             inp = (data_input.attr('value'));
         }
+        var $tzname = jQuery('#warp-input1').val();
+        var $email = jQuery('#warp-input2').val();
+        var $title = jQuery('#warp-input3').val();
+        var $website = jQuery('#warp-input4').val();
+        var $content = jQuery('#text-ra').val();
+        var $category = jQuery('#jform_mycategory').val();
+        var $response = jQuery('#recaptcha_response_field').val();
+        var $challenge = jQuery('#recaptcha_challenge_field').val();
+
         jQuery.ajax({
             url: 'index.php?option=com_tz_guestbook&view=guestbook&task=add&Itemid=<?php echo JRequest::getVar('Itemid'); ?>',
             type: 'post',
             data: {
-                name: jQuery('#warp-input1').attr('value'),
-                email: jQuery('#warp-input2').attr('value'),
-                title: jQuery('#warp-input3').attr('value'),
-                website: jQuery("#warp-input4").attr('value'),
-                content: jQuery('#text-ra').attr('value'),
-                category: jQuery('#jform_mycategory').attr('value'),
+                name: $tzname,
+                email: $email,
+                title: $title,
+                website: $website,
+                content: $content,
+                category: $category,
                 "<?php echo JSession::getFormToken(); ?>": 1,
-                recaptcha_response_field: jQuery('#recaptcha_response_field').attr('value'),
-                recaptcha_challenge_field: jQuery('#recaptcha_challenge_field').attr('value'),
+                recaptcha_response_field: $response,
+                recaptcha_challenge_field: $challenge,
                 check: inp
             }
         }).success(function (data) {
-
+                if (!jQuery.isNumeric(data)) {
+                    data = jQuery.parseHTML(data);
+                }
                 var checkcapta = jQuery('#checkcapcha').attr('value');
                 if (checkcapta == 1) {
-//                   Recaptcha.reload();
-
                 }
                 var statuss = <?php echo $this->hstatus; ?>;
                 if (statuss == 1) {
@@ -361,6 +376,7 @@ jQuery(document).ready(function () {
                     document.getElementById("nnt_p_capchar").innerHTML = " <?php echo JText::_("COM_TZ_GUESTBOOK_YOU_ENTER_THE_WRONG_CAPTCHA"); ?>";
                 }
                 if (!jQuery.isNumeric(data)) {
+
                     jQuery('#warp-input3').attr('value', '<?php echo JText::_("COM_TZ_GUESTBOOK_TITLE"); ?>');
                     jQuery('#text-ra').attr('value', '<?PHP echo JText::_("COM_TZ_GUESTBOOK_YOUR_GUESTBOOK"); ?>');
                     jQuery('#warp-fom').hide();
@@ -373,6 +389,7 @@ jQuery(document).ready(function () {
                 }
                 else {
                     if (data == '2') {
+                        alert('aaaaaa');
                         var nameHTML = jQuery('.tz_input_name');
                         nameHTML.css("display", "block");
                         pp.innerHTML = '<?php echo JText::_('COM_TZ_GUESTBOOK_ERROR_NAME');?>';
@@ -409,7 +426,9 @@ jQuery(document).ready(function () {
 </script>
 
 <div id="TZGuestBook">
-    <?php echo $this->loadTemplate('form'); ?>
+    <?php
+
+    echo $this->loadTemplate('form'); ?>
     <div id="wrap-baiviet" class="transitions-enabled clearfix">
         <?php echo $this->loadTemplate('item'); ?>
         <div class="clearr"></div>
@@ -451,6 +470,7 @@ jQuery(document).ready(function () {
                         <?php endif;?>
                         <?php if($this->conajx == 2):?>
                         jQuery('#tz_append').removeAttr('style').html('<a id="tz_append-a"  class="btn btn-large-tz"><?php echo JText::_('COM_TZ_GUESTBOOK_NO_ITEMS');?></a>');
+
                         <?php endif;?>
                     },
                     loading: {
@@ -461,6 +481,7 @@ jQuery(document).ready(function () {
                     }
                 },
                 function (newElements) {
+
                     if (newElements.length) {
                         var arrganerme_gustbooks = <?php echo $this->arrganerme_gustbook; ?>;
                         if (arrganerme_gustbooks == 0) {
@@ -472,7 +493,9 @@ jQuery(document).ready(function () {
                         jQuery('div#tz_append').find('a:first').show();
                     }
                 });
+
             <?php if($this->conajx == 1):?>
+
             jQuery(window).unbind('.infscr');
             jQuery('#tz_append >a').click(function () {
                 jQuery(this).stop();

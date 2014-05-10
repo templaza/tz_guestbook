@@ -17,7 +17,18 @@
         </fieldset>
     </fields>
     <fields name="params">
-        <fieldset name="basic">            
+        <fieldset name="basic">   
+			<field
+                    name="loadjQuery"
+                    type="list"
+                    label="COM_TZ_GUESTBOOK_LOAD_JQUERY_LIBRARY_LABEL"
+                    default=""
+                    description="COM_TZ_GUESTBOOK_LOAD_JQUERY_LIBRARY_DESC">
+                <option value="">JGLOBAL_USE_GLOBAL</option>
+                <option value="1">JYES</option>
+                <option value="0">JNO</option>
+            </field>
+		
             <field
                     name="title"
                     type="list"

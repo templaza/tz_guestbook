@@ -19,7 +19,6 @@
 defined("_JEXEC") or die;
 $document = JFactory::getDocument();
 $document->addStyleSheet('components/com_tz_guestbook/css/edit.css');
-
 ?>
 <form action="index.php?option=com_tz_guestbook" method="post" name="adminForm" id="adminForm">
     <div id="warp-commemt">

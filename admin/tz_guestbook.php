@@ -19,14 +19,17 @@
 defined('_JEXEC') or die;
 $doc = JFactory::getDocument();
 //Add Script to the header
-$doc->addScript(JURI::base() . 'components/com_tz_guestbook/jui/js/jquery.min.js');
-$doc->addScript(JURI::base() . 'components/com_tz_guestbook/jui/js/jquery-noconflict.js');
-$doc->addScript(JURI::base() . 'components/com_tz_guestbook/jui/js/bootstrap.min.js');
-$doc->addScript(JURI::base() . 'components/com_tz_guestbook/jui/js/chosen.jquery.min.js');
-$doc->addScript(JURI::base() . 'components/com_tz_guestbook/jui/js/jquery.ui.core.min.js');
-$doc->addScript(JURI::base() . 'components/com_tz_guestbook/jui/js/jquery.ui.sortable.min.js');
-$doc->addScript(JURI::base() . 'components/com_tz_guestbook/jui/js/sortablelist.js');
-$doc->addScript(JURI::base() . 'components/com_tz_guestbook/js/template.js');
+if (!version_compare(JVERSION, '3.0', 'ge')) {
+    $doc->addScript(JURI::base() . 'components/com_tz_guestbook/jui/js/jquery.min.js');
+    $doc->addScript(JURI::base() . 'components/com_tz_guestbook/jui/js/jquery-noconflict.js');
+    $doc->addScript(JURI::base() . 'components/com_tz_guestbook/jui/js/bootstrap.min.js');
+    $doc->addScript(JURI::base() . 'components/com_tz_guestbook/jui/js/chosen.jquery.min.js');
+}
+
+$doc->addCustomTag('<script src="'.JURI::base() . 'components/com_tz_guestbook/jui/js/jquery.ui.core.min.js'.'" type="text/javascript"></script>');
+$doc->addCustomTag('<script src="'.JURI::base() . 'components/com_tz_guestbook/jui/js/jquery.ui.sortable.min.js'.'" type="text/javascript"></script>');
+$doc->addCustomTag('<script src="'.JURI::base() . 'components/com_tz_guestbook/jui/js/sortablelist.js'.'" type="text/javascript"></script>');
+$doc->addCustomTag('<script src="'.JURI::base() . 'components/com_tz_guestbook/js/template.js'.'" type="text/javascript"></script>');
 $doc->addStyleSheet(JURI::base() . 'components/com_tz_guestbook/jui/css/chosen.css');
 $doc->addCustomTag('<link href="' . JURI::base() . 'components/com_tz_guestbook/css/template.css' .
     '" rel="stylesheet" type="text/css"/>');

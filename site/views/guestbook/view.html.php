@@ -27,12 +27,10 @@ class Tz_guestbookViewGuestbook extends JViewLegacy
     {
         JHtml::_('behavior.framework');
         $state = $this->get('State')->get('params');
-
         $titl = $state->get('title');
         $showcapcha = $state->get('showcaptchat');
         $name = $state->get('name');
         $date = $state->get('date');
-
         $this->form = $this->get('Form');
         $nnt_width = $state->get('nnt_coludwidt');
         $configajx = $state->get('congiajax');
@@ -45,6 +43,7 @@ class Tz_guestbookViewGuestbook extends JViewLegacy
         $count_commnet = $state->get('textcomment');
         $time_notice = $state->get('timethongbao');
         $gust_arrangements = $state->get('sapxeplubut');
+        $this->assign('params',$state);
         $this->assign('arrganerme_gustbook', $gust_arrangements);
         $this->assign('time_notice', $time_notice);
         $this->assign('count_name', $count_name);

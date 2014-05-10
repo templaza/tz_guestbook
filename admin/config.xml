@@ -4,6 +4,16 @@
             name="comment"
             label="COM_TZ_GUESTBOOK_0"
             description="COM_TZ_GUESTBOOK_DISCRIPTION_0">       
+			
+		<field
+                name="loadjQuery"
+                type="list"
+                label="COM_TZ_GUESTBOOK_LOAD_JQUERY_LIBRARY_LABEL"
+                default="0"
+                description="COM_TZ_GUESTBOOK_LOAD_JQUERY_LIBRARY_DESC">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
         <field
                 name="shownow"
                 type="radio"
