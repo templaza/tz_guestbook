@@ -133,7 +133,9 @@ $sortFields = $this->getSortFields();
                 </thead>
                 <tbody>
                 <?php
-                foreach ($this->Hienthi as $i => $num) {
+
+                foreach ($this->hienthi as $i => $num) {
+
                     ?>
                     <tr class="row<?php echo $i % 2; ?>">
                         <td class="small hidden-phone">
@@ -153,9 +155,9 @@ $sortFields = $this->getSortFields();
                                     'index.php?option=com_tz_guestbook&task=guestbook.edit&id=' . $num->cid);
                                 JHtml::_('dropdown.divider');
                                 if ($num->cstatus) :
-                                    JHtml::_('dropdown.unpublish', 'cb' . $i, 'guest.');
+                                    JHtml::_('dropdown.unpublish', 'cb' . $i, 'guestbook.');
                                 else :
-                                    JHtml::_('dropdown.publish', 'cb' . $i, 'guest.');
+                                    JHtml::_('dropdown.publish', 'cb' . $i, 'guestbook.');
                                 endif;
                                 echo JHtml::_('dropdown.render');
                                 ?>
@@ -185,7 +187,7 @@ $sortFields = $this->getSortFields();
                         </td>
                         <td class="center">
                             <?php
-                            echo JHtml::_('jgrid.published', $num->cstatus, $i, 'guest.', true, 'cb');
+                            echo JHtml::_('jgrid.published', $num->cstatus, $i, 'guestbook.', true, 'cb');
                             ?>
                         </td>
                         <td class="small hidden-phone">

@@ -31,12 +31,15 @@ JHtml::_('formbehavior.chosen', 'select');
 
 class Tz_guestbookViewGuestbook extends JViewLegacy
 {
-
+    protected $pagination   = null;
     protected $sidebar = null;
-
-    function display($tpl = null)
+    protected $hienthi = null;
+    protected $detail = null;
+    public function display($tpl = null)
     {
-
+        $this->pagination = $this->get('Pagination');
+        $this->hienthi = $this->get('List');
+        $this->detail = $this->get('Detail');
         $state = $this->get('State');
         $status = $state->get('sata');
         $aut = $state->get('autho');
@@ -51,15 +54,13 @@ class Tz_guestbookViewGuestbook extends JViewLegacy
 
         array_push($author, $guest);
         $this->assign('tz_search', $search);
-        $this->assign('detail', $this->get('Detail'));
+//        $this->assign('detail', $this->get('Detail'));
         $this->assign('state1', $listOrder);
         $this->assign('state2', $listDirn);
         $this->assign('author', $aut);
         $this->assign('star', $status);
-        $this->assign('Hienthi', $this->get('List'));
         $this->assign('authors', $author);
         $this->assign('category', $category);
-        $this->assign('pagination', $this->get('Pagination'));
         $this->assign('state', $state);
         $task = JRequest::getVar('task');
         Tz_guestbookHelper::addSubmenu('guestbook');
@@ -81,17 +82,15 @@ class Tz_guestbookViewGuestbook extends JViewLegacy
         $bar = JToolBar::getInstance('toolbar');
         JToolbarHelper::title(JText::_('COM_TZ_GUESTBOOK_2'), 'article.png');
         JToolbarHelper::editList("guestbook.edit", JText::_('COM_TZ_GUESTBOOK_VIEW'));
-        JToolbarHelper::publishList("guest.publish");
-        JToolbarHelper::unpublishList("guest.unpublish");
+        JToolbarHelper::publishList("guestbook.publish");
+        JToolbarHelper::unpublishList("guestbook.unpublish");
         JToolBarHelper::preferences('com_tz_guestbook');
-        JToolbarHelper::deleteList("COM_TZ_GUESTBOOK_DELETE_GUESTBOOK", 'guestbook.remove');
+        JToolbarHelper::deleteList("COM_TZ_GUESTBOOK_DELETE_GUESTBOOK", 'guestbook.delete');
 
         if ($user->authorise('core.edit')) {
             JHtml::_('bootstrap.modal', 'collapseModal');
 
             $title = JText::_('COM_TZ_GUSETBOOK_BATCH');
-            //$batchIcon = '<i class="icon-checkbox-partial" title="' . $title . '"></i>';
-            //$batchClass = ' class="btn btn-small"';
 			if(!COM_TZ_GUESTBOOK_JVERSION_COMPARE){
 			$batchIcon = '<span class="tz-checkbox-partial" title="' . $title . '"></span>';
 			$batchClass = ' class="tz-batch"';

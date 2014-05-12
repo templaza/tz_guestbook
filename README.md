@@ -10,6 +10,10 @@ If you love TZ Guestbook, please help us review and vote for it on JED: http://e
 
 *** Changelog ***
 
+04/10/2014 - 3.3.0
+
+	Compatible with Joomla 3.3.
+
 04/7/2014 - 3.2.1
 
 	Fix error does not show CAPTCHA.

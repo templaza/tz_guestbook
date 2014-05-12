@@ -84,10 +84,6 @@ function TZ_GuestbookBuildRoute(&$query)
         $array = array();
 
         foreach ($category as $id) {
-            if ($id == $mCatid) {
-
-                break;
-            }
             $array[] = $id->id;
             $array[] = $id->alias;
             $array = implode('-', $array);

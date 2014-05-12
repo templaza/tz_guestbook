@@ -27,7 +27,7 @@ jimport('joomla.application.component.modellist');
 class TZ_guestbookModelCategories extends JModelList
 {
 
-    protected function populateState()
+    protected function populateState($ordering = NULL, $direction = NULL)
     {
         $app = JFactory::getApplication('site');
         $param = $app->getParams();
@@ -46,7 +46,7 @@ class TZ_guestbookModelCategories extends JModelList
         $query->select('c.*');
         $query->select('count(a.id_cm) as numitems');
         $query->from('#__categories as c');
-        $query->join('left', '#__comment as a on c.id = a.catid ');
+        $query->join('left', '#__comment as a on c.id = a.catid and a.status = 1 ');
         $query->where("c.extension = 'com_tz_guestbook' and c.published = 1 ");
 
         if ($a[0] == null) {

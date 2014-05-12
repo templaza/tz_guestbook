@@ -86,12 +86,20 @@ class Tz_guestbookModelGuestbook extends JModelForm
     */
     function getInsertcontent()
     {
+
         JRequest::checkToken() or jexit('Invalid Token');
         if (!isset($_SERVER['HTTP_REFERER'])) return null;
         $refer = $_SERVER['HTTP_REFERER'];
         $url_arr = parse_url($refer);
-        if ($_SERVER['HTTP_HOST'] != $url_arr['host']) return null;
+		if ($url_arr['port'] != '80') {
+            $check = $url_arr['host'] . ":" . $url_arr['port'];
+        } else {
+            $check = $url_arr['host'];
+        }
+        if ($_SERVER['HTTP_HOST'] != $check) return null;
+
         $status = $this->getState('c_status');
+
         $name = strip_tags(htmlspecialchars($_POST['name']));
         $email = strip_tags(htmlspecialchars($_POST['email']));
         $title = strip_tags(htmlspecialchars($_POST['title']));
@@ -102,6 +110,7 @@ class Tz_guestbookModelGuestbook extends JModelForm
         $datetime = JFactory::getDate();
         $date = $datetime->toSql();
         $user = JFactory::getUser();
+
         $id = $user->id;
         switch ($website) {
             case'Your website':
@@ -119,6 +128,7 @@ class Tz_guestbookModelGuestbook extends JModelForm
 			values
 			(null,"' . $name . '","' . $email . '","' . $category . '","' . $title . '","' . $content . '",
                         "' . $publich . '","' . $date . '","' . $status . '","' . $website . '","' . $id . '")';
+
             $db->setQuery($sql);
             $num_row = $db->query();
             $row = $db->getAffectedRows($num_row);
@@ -185,12 +195,13 @@ class Tz_guestbookModelGuestbook extends JModelForm
     {
 
         $db = JFactory::getDbo();
-        $sql_cate = "SELECT * FROM #__categories where extension ='com_tz_guestbook'";
-        $db->setQuery($sql_cate);
+
         $sql = "SELECT c.name AS cname,  c.email AS cemail,  c.title AS ctitle, c.content AS ccontent,  c.public AS cpublic, c.catid AS catid,
                             c.date AS cdate, c.status AS cstatus, u.name AS uname, c.website as cwebsite ,j.title as jtitle
-                    FROM #__users AS u RIGHT JOIN #__comment AS c ON c.id_us  = u.id LEFT  JOIN #__categories AS j ON c.catid = j.id
+                    FROM #__users AS u right JOIN #__comment AS c ON c.id_us  = u.id LEFT  JOIN #__categories AS j ON c.catid = j.id
                     where c.status =1 order  by c.date desc limit 0,1";
+
+
         $db->setQuery($sql);
         $row = $db->loadObjectList();
 
@@ -233,9 +244,13 @@ class Tz_guestbookModelGuestbook extends JModelForm
 
         $check_mail = $this->checkMail();
         if ($check_mail == 'success') {
+
             $row = $this->getInsertcontent();
-            require_once(JPATH_COMPONENT . DIRECTORY_SEPARATOR . 'views' . DIRECTORY_SEPARATOR . 'guestbook' . DIRECTORY_SEPARATOR . 'view.html.php');
+
+            require_once(JPATH_COMPONENT . '/views/guestbook/view.html.php');
+
             $view = new Tz_guestbookViewGuestbook();
+
             $state = $this->getState('params');
             $option = $state->get('title');
             $name = $state->get('name');
@@ -251,6 +266,7 @@ class Tz_guestbookModelGuestbook extends JModelForm
             $view->assign('category', $cate);
             $view->assign('display', $this->getList2());
             $view->assign('num_roww', $row);
+
             return ($view->loadTemplate('item'));
         } else {
             if ($check_mail == 'name') {
@@ -317,11 +333,13 @@ class Tz_guestbookModelGuestbook extends JModelForm
     {
         $name = $_POST['name'];
         $email = $_POST['email'];
+
         $title = $_POST['title'];
         $content = $_POST['content'];
         $website = $_POST['website'];
 
         $changeText = $this->getState('remove_text');
+
         if ($changeText != '') {
             $array_changeText = array_map('trim', explode(",", $changeText));
             for ($i = 0; $i < count($array_changeText); $i++) {
