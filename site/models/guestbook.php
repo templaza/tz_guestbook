@@ -91,7 +91,7 @@ class Tz_guestbookModelGuestbook extends JModelForm
         if (!isset($_SERVER['HTTP_REFERER'])) return null;
         $refer = $_SERVER['HTTP_REFERER'];
         $url_arr = parse_url($refer);
-		if ($url_arr['port'] != '80') {
+		if (isset($url_arr['port']) && $url_arr['port'] != '80') {
             $check = $url_arr['host'] . ":" . $url_arr['port'];
         } else {
             $check = $url_arr['host'];
