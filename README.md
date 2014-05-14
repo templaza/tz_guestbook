@@ -10,6 +10,11 @@ If you love TZ Guestbook, please help us review and vote for it on JED: http://e
 
 *** Changelog ***
 
+04/10/2014 - 3.3.2
+
+	Compatible with Joomla 2.5.20.
+	Add 1 default category more.
+
 04/10/2014 - 3.3.0
 
 	Compatible with Joomla 3.3.
