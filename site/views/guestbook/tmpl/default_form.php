@@ -76,17 +76,13 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 
                 <p class="tz_input_email" id="pemail"></p>
             </div>
-
-            <?php
-            if ($this->tit == 1) :?>
                 <div class="warp-in">
                     <input id="warp-input3" class="conten-input" type="text" name="title"
                            maxlength="<?php echo $this->count_tit; ?>"
                            value="<?php echo JText::_("COM_TZ_GUESTBOOK_TITLE"); ?>"/>
 
                     <p class="tz_input_title" id="ptitle"></p>
-                </div>
-            <?php endif; ?>
+                </div>            
             <div class="warp-in">
                  <select class="tz_category" id="jform_mycategory">
                     <option value=""><?php echo JText::_('COM_TZ_GUESTBOOK_CATEGORY_NONE'); ?></option>
@@ -98,18 +94,14 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
                     <?php endforeach; ?>
                 </select>
                 <p class="tz_input_category" id="s_category"></p>
-            </div>
-
-            <?php if (isset($this->fweb) && $this->fweb == 1): ?>
+            </div>            
                 <div class="warp-in">
                     <input id="warp-input4" class="conten-input" type="text" name="website"
                            maxlength="<?php echo $this->count_web; ?>"
                            value="<?php echo JText::_("COM_TZ_GUESTBOOK_WEBSITE"); ?>"/>
 
                     <p class="tz_input_website" id="p_website"></p>
-                </div>
-            <?php endif; ?>
-
+                </div>          
             <div id="nnt_com1" class="warp-in">
                 <label id="warp-label">
                     <?php echo JText::_("COM_TZ_GUESTBOOK_SHOW_EMIAL_IN_PUBLIC"); ?>

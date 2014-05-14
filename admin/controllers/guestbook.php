@@ -18,8 +18,8 @@
 -------------------------------------------------------------------------*/
 defined('_JEXEC') or die;
 jimport('joomla.application.component.controlleradmin');
-
-class Tz_guestbookControllerGuestbook extends JControllerAdmin
+require_once(JPATH_COMPONENT.'/libraries/legacy/controller/admin.php');
+class Tz_guestbookControllerGuestbook extends TZControllerAdmin
 {
 
     function display($cachable = false, $urlparams = array())
@@ -128,7 +128,6 @@ class Tz_guestbookControllerGuestbook extends JControllerAdmin
             }
         }
         // Invoke the postDelete method to allow for the child class to access the model.
-        $this->postDeleteHook($model, $cid);
 
         $this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&view=' . $this->view_list, false));
     }
