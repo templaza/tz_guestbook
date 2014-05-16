@@ -52,7 +52,7 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
         <form ACTION="" method="POST">
             <div class="warp-in">
                 <input
-                    id="warp-input1" class="conten-input" type="text" name="name"
+                    id="warp-input1" class="conten-input tz_check_name" type="text" name="name"
                     maxlength="<?php echo $this->count_name; ?>"
                     <?php if (isset($this->auth->name) && $this->auth->name != ""): ?>
                         value="<?php echo $this->auth->name; ?>"
@@ -65,7 +65,7 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
             </div>
 
             <div class="warp-in">
-                <input id="warp-input2" class="conten-input" type="text" name="email"
+                <input id="warp-input2" class="conten-input tz_check_email" type="text" name="email"
                        maxlength="<?php echo $this->count_email; ?>"
                     <?php if (isset($this->auth->email) && $this->auth->email != "") : ?>
                         value="<?php echo $this->auth->email; ?>"
@@ -77,12 +77,12 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
                 <p class="tz_input_email" id="pemail"></p>
             </div>
                 <div class="warp-in">
-                    <input id="warp-input3" class="conten-input" type="text" name="title"
+                    <input id="warp-input3" class="conten-input tz_check_title" type="text" name="title"
                            maxlength="<?php echo $this->count_tit; ?>"
                            value="<?php echo JText::_("COM_TZ_GUESTBOOK_TITLE"); ?>"/>
 
                     <p class="tz_input_title" id="ptitle"></p>
-                </div>            
+                </div>
             <div class="warp-in">
                  <select class="tz_category" id="jform_mycategory">
                     <option value=""><?php echo JText::_('COM_TZ_GUESTBOOK_CATEGORY_NONE'); ?></option>
@@ -94,14 +94,14 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
                     <?php endforeach; ?>
                 </select>
                 <p class="tz_input_category" id="s_category"></p>
-            </div>            
+            </div>
                 <div class="warp-in">
-                    <input id="warp-input4" class="conten-input" type="text" name="website"
+                    <input id="warp-input4" class="conten-input tz_check_website" type="text" name="website"
                            maxlength="<?php echo $this->count_web; ?>"
                            value="<?php echo JText::_("COM_TZ_GUESTBOOK_WEBSITE"); ?>"/>
 
                     <p class="tz_input_website" id="p_website"></p>
-                </div>          
+                </div>
             <div id="nnt_com1" class="warp-in">
                 <label id="warp-label">
                     <?php echo JText::_("COM_TZ_GUESTBOOK_SHOW_EMIAL_IN_PUBLIC"); ?>
