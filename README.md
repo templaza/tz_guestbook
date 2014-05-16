@@ -10,6 +10,10 @@ If you love TZ Guestbook, please help us review and vote for it on JED: http://e
 
 *** Changelog ***
 
+04/16/2014 - 3.3.3
+
+	Fix error and change name of 'Obliged Keyword' option by Black List.
+
 04/10/2014 - 3.3.2
 
 	Compatible with Joomla 2.5.20.

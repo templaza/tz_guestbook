@@ -339,7 +339,12 @@ class Tz_guestbookModelGuestbook extends JModelForm
         $website = $_POST['website'];
 
         $changeText = $this->getState('remove_text');
-
+		strtolower($changeText);
+        strtolower($name);
+        strtolower($email);
+        strtolower($title);
+        strtolower($content);
+        strtolower($website);
         if ($changeText != '') {
             $array_changeText = array_map('trim', explode(",", $changeText));
             for ($i = 0; $i < count($array_changeText); $i++) {

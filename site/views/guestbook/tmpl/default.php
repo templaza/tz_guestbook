@@ -389,23 +389,25 @@ jQuery(document).ready(function () {
                 }
                 else {
                     if (data == '2') {
-                        alert('aaaaaa');
                         var nameHTML = jQuery('.tz_input_name');
+                        var name_focus = jQuery('.tz_check_name');
                         nameHTML.css("display", "block");
                         pp.innerHTML = '<?php echo JText::_('COM_TZ_GUESTBOOK_ERROR_NAME');?>';
-                        nameHTML.focus();
+                        name_focus.focus();
                     }
                     if (data == '3') {
                         var emailHTML = jQuery('.tz_input_email');
+                        var email_focus = jQuery('.tz_check_email');
                         emailHTML.css("display", "block");
                         ppemail.innerHTML = '<?php echo JText::_('COM_TZ_GUESTBOOK_ERROR_EMAIL');?>';
-                        emailHTML.focus();
+                        email_focus.focus();
                     }
                     if (data == '4') {
                         var titleHTML = jQuery('.tz_input_title');
+                        var title_focus  = jQuery('.tz_check_title');
                         titleHTML.css("display", "block");
                         ptitle.innerHTML = '<?php echo JText::_('COM_TZ_GUESTBOOK_ERROR_TITLE');?>';
-                        titleHTML.focus();
+                        title_focus.focus();
                     }
                     if (data == '5') {
                         var messageHTML = jQuery('.tz_input_comment');
@@ -415,9 +417,10 @@ jQuery(document).ready(function () {
                     }
                     if (data == '6') {
                         var websiteHTML = jQuery('.tz_input_website');
+                        var website_focus = jQuery('.tz_check_website');
                         websiteHTML.css("display", "block");
                         p_website.innerHTML = '<?php echo JText::_('COM_TZ_GUESTBOOK_ERROR_WEBSITE');?>';
-                        websiteHTML.focus();
+                        website_focus.focus();
                     }
                 }
             });
