@@ -262,8 +262,8 @@ jQuery(document).ready(function () {
         var l_cate = jQuery('#jform_mycategory');
         var p_cate = document.getElementById("s_category");
 
-        var str2 = /^([a-zA-Z0-9_\.])+\@([a-zA-Z0-9_\-])+\.([a-zA-Z]{2,4})([a-z-A-Z\.]{2,4})?$/;
-        var srt3 = /^http(s)?:\/\/(www\.)?([a-zA-Z0-9\_])+\.([a-zA-Z0-9\/]{1,5})+(\.[A-Za-z0-9\/]{1,4})?([a-zA-Z0-9\/\.&=_\+\#\-\?]*)?$/
+        var str2 = /^([a-zA-Z0-9_\.\-])+\@([a-zA-Z0-9_\-])+\.([a-zA-Z]{2,4})([a-z-A-Z\.]{2,4})?$/;
+        var srt3 = /^http(s)?:\/\/(www\.)?([a-zA-Z0-9_\_\-])+\.([a-zA-Z0-9\/]{1,5})+(\.[A-Za-z0-9\/]{1,4})?([a-zA-Z0-9\/\.&=_\+\#\-\?]*)?$/
 
         if (scate == 0) {
             jQuery('.tz_input_category').css("display", "block");

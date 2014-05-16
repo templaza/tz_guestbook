@@ -10,9 +10,10 @@ If you love TZ Guestbook, please help us review and vote for it on JED: http://e
 
 *** Changelog ***
 
-05/14/2014 - 3.3.1
+04/10/2014 - 3.3.2
 
-	Fix bug when submit guestbook with invalid port
+	Compatible with Joomla 2.5.20.
+	Add 1 default category more.
 
 04/10/2014 - 3.3.0
 

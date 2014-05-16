@@ -78,8 +78,28 @@ class com_tz_guestbookInstallerScript{
                 $db -> query();
             }
         }
-		
-		
+		$query_check = "select * from #__assets where title='Uncategory_TZ_Guestbook'";
+		$db->setQuery($query_check);
+		$check_assets = $db->loadObjectList();
+		if($check_assets == null){		
+			$user = JFactory::getUser();
+			$query3 = "INSERT INTO #__assets(level,name, title) VALUES (2,'','Uncategory_TZ_Guestbook')";
+			$db->setQuery($query3);
+			$db->execute();
+			$latest_id_asset = $db->insertid();
+			$val_param  = '{"category_layout":"","image":""}';
+			$meta_data = '{"author":"","robots":""}';
+			$query1 = "insert into #__categories (parent_id,asset_id,path,extension,title,alias,published,params,metadata,language,access,level,created_user_id) values (1,$latest_id_asset,'uncategory','com_tz_guestbook','Uncategory','uncategory',1,'$val_param','$meta_data','*',1,1,$user->id)";
+			$db->setQuery($query1);
+			$db->execute();
+			$latest_id = $db ->insertid() ;
+			$query4 = "Update #__assets set name='com_tz_guestbook.category.$latest_id' where id=$latest_id_asset";
+			$db->setQuery($query4);
+			$db->execute();
+			$query2  = "Update #__comment set catid =".$latest_id." where catid=0";
+			$db->setQuery($query2);
+			$db->execute();
+		}
         //Install plugins
         $status = new stdClass;
         $status->modules = array();
@@ -129,6 +149,20 @@ class com_tz_guestbookInstallerScript{
         $plugins = & $parent -> getParent() -> manifest -> xpath('plugins/plugin');
 
         $result = null;
+		
+		$db = JFactory::getDBo();
+		$query1 = "Select asset_id from #__categories where extension='com_tz_guestbook'";
+		$db->setQuery($query1);
+		$a = $db->loadObjectList();
+		for($i = 0; $i<count($a);$i++){
+			$query2 = "Delete from #__assets where id =".$a[$i]->asset_id."";
+			$db->setQuery($query2);
+			$db->execute();		
+		}		
+		$query3 = "Delete from #__categories where extension = 'com_tz_guestbook'";
+		$db->setQuery($query3);
+		$db->execute();
+		
         if($modules){
             foreach($modules as $module){
                 $mname = (string)$module->attributes() -> module;
