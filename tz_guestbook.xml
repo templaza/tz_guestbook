@@ -118,4 +118,8 @@
     <modules>
         <module module="mod_tz_guestbook" client="site" />
     </modules>
+    
+    <updateservers>
+        <server type="extension" priority="1" name="TZ Guestbook Core"><![CDATA[http://joomla.templaza.net/extensions/updates/components/tz_guestbook_update.xml]]></server>
+    </updateservers>
 </extension>
