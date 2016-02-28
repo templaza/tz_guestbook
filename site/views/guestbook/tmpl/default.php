@@ -19,7 +19,6 @@
 
 defined("_JEXEC") or die;
 $document = JFactory::getDocument();
-$document->addStyleSheet('components/com_tz_guestbook/css/baiviet2.css');
 $p  = $this->params;
 if($p->get('loadjQuery',1)){
     $document->addScript('components/com_tz_guestbook/js/jquery-1.8.2.min.js');
